@@ -43,7 +43,7 @@ def initdb():
 @manager.command
 def createall():
     # Just for testing purposes
-    dbfile = os.path.join(current_app.config["basedir"], "flaskbb.sqlite")
+    dbfile = os.path.join(DevelopmentConfig.basedir, "tardigrade.sqlite")
     if os.path.exists(dbfile):
         os.remove(dbfile)
 
