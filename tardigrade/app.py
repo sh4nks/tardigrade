@@ -10,7 +10,7 @@
 """
 import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, request
 from flask.ext.login import current_user
 from flask_debugtoolbar import DebugToolbarExtension
 
@@ -19,13 +19,14 @@ from tardigrade.models.user import User
 from tardigrade.views.auth import auth
 from tardigrade.views.user import user
 from tardigrade.views.blog import blog
-from tardigrade.extensions import db, login_manager, mail, cache, babel
+from tardigrade.extensions import db, login_manager, mail, cache, babel, themes
+from tardigrade.helpers import render_template
 
 
 DEFAULT_BLUEPRINTS = (
     (auth, ""),
     (user, "/user"),
-    (blog, "/blog")
+    (blog, "")
 )
 
 
@@ -66,6 +67,9 @@ def configure_extensions(app):
 
     # Flask-Cache
     cache.init_app(app)
+
+    # Flask-Themes2
+    themes.init_themes(app, app_identifier="tardigrade")
 
     # Flask-Debugtoolbar
     DebugToolbarExtension(app)

@@ -9,11 +9,13 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask import Blueprint
-from flask.ext.babel import gettext as _
+
+from tardigrade.helpers import render_template
+
 
 user = Blueprint("user", __name__)
 
 
 @user.route("/me")
 def profile():
-    return _("Hello Me!")
+    return render_template("user.html")

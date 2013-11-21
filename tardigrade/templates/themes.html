@@ -1,0 +1,23 @@
+{% extends theme('layout.html') %}
+
+{% set page_title = 'Themes' %}
+
+{% block content %}
+
+<h1>Theme Selection <small>Just testing</small></h1>
+
+{% for theme in themes %}
+
+<h3>{{ theme.name }}</h3>
+
+<p class=meta>
+    By {{ theme.author }}{% if theme.license %}, license: {{ theme.license }}{% endif %}
+</p>
+
+<p>{{ theme.description }}</p>
+
+<p class=select><a href="{{ url_for('blog.settheme', ident=theme.identifier) }}">Select this theme</a></p>
+
+{% endfor %}
+
+{% endblock content %}

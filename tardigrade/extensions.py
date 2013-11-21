@@ -13,6 +13,7 @@ from flask.ext.login import LoginManager
 from flask.ext.mail import Mail
 from flask.ext.cache import Cache
 from flask.ext.babel import Babel
+from flask.ext.themes2 import Themes
 #from flask.ext.debugtoolbar import DebugToolbarExtension
 
 # Database
@@ -29,6 +30,9 @@ cache = Cache()
 
 # Babel
 babel = Babel()
+
+# Themes
+themes = Themes()
 
 # Debugtoolbar
 # The Debugtoolbar does not (atm) support the "factory" design

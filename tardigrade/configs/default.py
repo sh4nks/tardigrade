@@ -66,3 +66,5 @@ class DefaultConfig(object):
 
     BABEL_DEFAULT_LOCALE = 'en'
     AVAILABLE_LOCALES = ["en", "de"]
+
+    DEFAULT_THEME = "bootstrap3"
