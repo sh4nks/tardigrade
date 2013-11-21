@@ -10,7 +10,7 @@
 """
 import datetime
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask.ext.login import current_user
 from flask_debugtoolbar import DebugToolbarExtension
 
@@ -19,7 +19,7 @@ from tardigrade.models.user import User
 from tardigrade.views.auth import auth
 from tardigrade.views.user import user
 from tardigrade.views.blog import blog
-from tardigrade.extensions import db, login_manager, mail, cache
+from tardigrade.extensions import db, login_manager, mail, cache, babel
 
 
 DEFAULT_BLUEPRINTS = (
@@ -82,6 +82,20 @@ def configure_extensions(app):
         return User.query.get(id)
 
     login_manager.init_app(app)
+
+    # Flask-Babel
+    babel.init_app(app)
+
+    @babel.localeselector
+    def get_locale():
+        # if a user is logged in, use the locale from the user settings
+        if current_user.is_authenticated():
+            return current_user.locale
+        # otherwise try to guess the language from the user accept
+        # header the browser transmits.  We support de/en in this
+        # example. The best match wins.
+        return request.accept_languages.\
+            best_match(app.config.get("AVAILABLE_LANGUAGES", ["en"]))
 
 
 def configure_blueprints(app, blueprints):

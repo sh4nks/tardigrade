@@ -28,6 +28,7 @@ class User(db.Model, UserMixin):
     _password = db.Column('password', db.String(80), nullable=False)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow())
     lastseen = db.Column(db.DateTime, default=datetime.utcnow())
+    locale = db.Column(db.String, default="en")
 
     # Methods
     def __repr__(self):

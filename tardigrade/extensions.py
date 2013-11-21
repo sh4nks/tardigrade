@@ -12,6 +12,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.mail import Mail
 from flask.ext.cache import Cache
+from flask.ext.babel import Babel
 #from flask.ext.debugtoolbar import DebugToolbarExtension
 
 # Database
@@ -25,6 +26,9 @@ mail = Mail()
 
 # Caching
 cache = Cache()
+
+# Babel
+babel = Babel()
 
 # Debugtoolbar
 # The Debugtoolbar does not (atm) support the "factory" design

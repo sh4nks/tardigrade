@@ -63,3 +63,6 @@ class DefaultConfig(object):
     MAIL_PASSWORD = ""
     MAIL_DEFAULT_SENDER = ("Default Sender", "noreply@example.org")
     ADMINS = ["admin@example.org"]
+
+    BABEL_DEFAULT_LOCALE = 'en'
+    AVAILABLE_LOCALES = ["en", "de"]

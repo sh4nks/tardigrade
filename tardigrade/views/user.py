@@ -9,10 +9,11 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask import Blueprint
+from flask.ext.babel import gettext as _
 
 user = Blueprint("user", __name__)
 
 
 @user.route("/me")
 def profile():
-    return "Hello Me!"
+    return _("Hello Me!")

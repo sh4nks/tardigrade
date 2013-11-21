@@ -42,12 +42,43 @@ def initdb():
 
 @manager.command
 def createall():
+    """
+    Creates the database with some example content
+    """
     # Just for testing purposes
     dbfile = os.path.join(DevelopmentConfig.basedir, "tardigrade.sqlite")
     if os.path.exists(dbfile):
         os.remove(dbfile)
 
     db.create_all()
+
+
+@manager.command
+def update_translations():
+    """
+    Updates the translations
+    """
+    os.system("pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot .")
+    os.system("pybabel update -i messages.pot -d tardigrade/translations")
+    os.unlink("messages.pot")
+
+
+@manager.command
+def init_translations(translation):
+    """
+    Adds a new language to the translations
+    """
+    os.system("pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot .")
+    os.system("pybabel init -i messages.pot -d tardigrade/translations -l " + translation)
+    os.unlink('messages.pot')
+
+
+@manager.command
+def compile_translations():
+    """
+    Compiles the translations.
+    """
+    os.system("pybabel compile -d tardigrade/translations")
 
 
 if __name__ == "__main__":
