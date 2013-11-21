@@ -25,6 +25,24 @@ coming soon!
 * Visit [localhost:8080](http://localhost:8080)
 
 
+### How to set up a virtualenv with virtualenvwrapper
+
+* Install virtualenvwrapper with your package manager or via
+    * `sudo pip install virtualenvwrapper`
+
+* Add these lines to your `.bashrc`
+
+        export WORKON_HOME=$HOME/.virtualenvs
+        export PROJECT_HOME=$HOME/Devel
+        source /usr/local/bin/virtualenvwrapper.sh
+
+* Create a new virtualenv
+    * `mkvirtualenv -a /path/to/your/project -p $(which python2) projectname`
+
+* and finally activate it
+    * `workon projectname`
+
+
 ## LICENSE
 
 [BSD LICENSE](http://flask.pocoo.org/docs/license/#flask-license)
