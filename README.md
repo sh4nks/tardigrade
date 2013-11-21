@@ -1,7 +1,7 @@
 # INTRODUCTION
 
 coming soon!
-test
+
 
 ## DEPENDENCIES
 
@@ -32,8 +32,7 @@ test
 
 * Add these lines to your `.bashrc`
 
-        export WORKON_HOME=$HOME/.virtualenvs
-        export PROJECT_HOME=$HOME/Devel
+        export WORKON_HOME=$HOME/.virtualenvs  # Location for your virtualenvs
         source /usr/local/bin/virtualenvwrapper.sh
 
 * Create a new virtualenv
@@ -42,6 +41,7 @@ test
 * and finally activate it
     * `workon projectname`
 
+For more options visit the documentation [here](http://virtualenvwrapper.readthedocs.org/en/latest/index.html).
 
 ## LICENSE
 
