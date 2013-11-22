@@ -95,19 +95,7 @@ class User(db.Model, UserMixin):
             data = False
         return expired, invalid, data
 
-    def save(self, groups=None):
-        if groups:
-            # TODO: Only remove/add groups that are selected
-            secondary_groups = self.secondary_groups.all()
-            for group in secondary_groups:
-                self.remove_from_group(group)
-            db.session.commit()
-
-            for group in groups:
-                # Do not add the primary group to the secondary groups
-                if group.id == self.primary_group_id:
-                    continue
-                self.add_to_group(group)
+    def save(self):
         db.session.add(self)
         db.session.commit()
         return self

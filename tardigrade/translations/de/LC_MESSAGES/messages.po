@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
-#,
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-21 14:21+0100\n"
+"POT-Creation-Date: 2013-11-22 09:46+0100\n"
 "PO-Revision-Date: 2013-11-21 13:15+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -18,6 +17,129 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: tardigrade/views/user.py:19
-msgid "Hello Me!"
-msgstr "Hallo Ich!"
+#: tardigrade/forms/auth.py:22
+msgid "You can only use letters, numbers or dashes"
+msgstr "Nur Buchstaben, Nummern und Unterstriche sind erlaubt"
+
+#: tardigrade/forms/auth.py:26
+msgid "Username or E-Mail"
+msgstr "Benutzername oder E-Mail"
+
+#: tardigrade/forms/auth.py:27
+msgid "You must provide an email adress or username"
+msgstr "Es ist eine E-Mail adresse oder ein Benutzername erforderlich"
+
+#: tardigrade/forms/auth.py:29 tardigrade/forms/auth.py:44
+#: tardigrade/forms/auth.py:72 tardigrade/forms/auth.py:88
+msgid "Password"
+msgstr "Passwort"
+
+#: tardigrade/forms/auth.py:30 tardigrade/forms/auth.py:45
+msgid "Password required"
+msgstr "Passwort erforderlich"
+
+#: tardigrade/forms/auth.py:32
+msgid "Remember Me"
+msgstr "Eingeloggt bleiben"
+
+#: tardigrade/forms/auth.py:36
+msgid "Username"
+msgstr "Benutzername"
+
+#: tardigrade/forms/auth.py:37
+msgid "Username required"
+msgstr "Benutzername erforderlich"
+
+#: tardigrade/forms/auth.py:40
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: tardigrade/forms/auth.py:41
+msgid "Email adress required"
+msgstr "E-Mail Adresse erforderlich"
+
+#: tardigrade/forms/auth.py:42
+msgid "This email is invalid"
+msgstr "Diese E-Mail Adresse ist nicht ordnungsgemäß."
+
+#: tardigrade/forms/auth.py:47
+msgid "Confirm Password"
+msgstr "Bestätige Passwort"
+
+#: tardigrade/forms/auth.py:48
+msgid "Confirm Password required"
+msgstr "Bestätigung des Passworts ist erforderlich"
+
+#: tardigrade/forms/auth.py:49
+msgid "Passwords do not match"
+msgstr "Die Passwörter stimmen nicht überein"
+
+#: tardigrade/forms/auth.py:51
+msgid "Accept Terms of Service"
+msgstr "Akzeptiere die AGBs"
+
+#: tardigrade/forms/auth.py:56
+msgid "This username is taken"
+msgstr "Dieser Benutzername ist bereits vergeben"
+
+#: tardigrade/forms/auth.py:61
+msgid "This email is taken"
+msgstr "Diese E-Mail Adresse ist schon registriert."
+
+#: tardigrade/forms/auth.py:76 tardigrade/forms/auth.py:84
+msgid "Email"
+msgstr "E-Mail"
+
+#: tardigrade/forms/auth.py:77
+msgid "Email reguired"
+msgstr "E-Mail Adresse erforderlich"
+
+#: tardigrade/forms/auth.py:91
+msgid "Confirm password"
+msgstr "Passwort bestätigen"
+
+#: tardigrade/forms/auth.py:93
+msgid "Passwords must match"
+msgstr "Die Passwörter müssen übereinstimmen"
+
+#: tardigrade/forms/auth.py:98
+msgid "Wrong E-Mail."
+msgstr "Falsche E-Mail Adresse"
+
+#: tardigrade/views/auth.py:44
+msgid "Wrong username or password"
+msgstr "Falscher Benutzername oder Passwort"
+
+#: tardigrade/views/auth.py:59
+msgid "Reauthenticated"
+msgstr "Login session erneuert"
+
+#: tardigrade/views/auth.py:89
+msgid "Thanks for registering"
+msgstr "Danke fürs registrieren"
+
+#: tardigrade/views/auth.py:111
+msgid "E-Mail sent! Please check your inbox."
+msgstr "E-Mail gesendet! Bitte überprüfen sie ihren Posteingang."
+
+#: tardigrade/views/auth.py:114
+msgid ""
+"You have entered an username or email that is not linked                 "
+"with your account"
+msgstr "Du hast einen Benutzername oder eine E-Mail Adresse eingegeben die nicht mit deinem Account verknüpft sind."
+
+#: tardigrade/views/auth.py:134
+msgid "Your password token is invalid."
+msgstr "Dein Passwort Token ist ungültig."
+
+#: tardigrade/views/auth.py:138
+msgid "Your password token is expired."
+msgstr "Dein Passwort Token ist abgelaufen."
+
+#: tardigrade/views/auth.py:144
+msgid "Your password has been updated."
+msgstr "Dein Passwort wurde aktualisiert."
+
+#~ msgid "Hello Me!"
+#~ msgstr "Hallo Ich!"
+

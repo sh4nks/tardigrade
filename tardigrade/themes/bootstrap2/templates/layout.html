@@ -41,9 +41,17 @@
 
                     {% if current_user and current_user.is_authenticated() %}
                         <div class="btn-group navbar-btn navbar-right" style="padding-left: 15px; margin-right: -10px">
-                            <a class="btn btn-primary" href="{{ url_for('user.profile') }}">
-                                <span class="fa fa-user"></span> Username
+                            <a class="btn btn-primary" href="{{ url_for('user.profile', username=current_user.username) }}">
+                                <span class="fa fa-user"></span> {{ current_user.username }}
                             </a>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url_for('user.settings') }}"><span class="fa fa-cogs"></span> Settings</a></li>
+
+                                <li><a href="{{ url_for('auth.logout') }}"><span class="fa fa-power-off"></span> Logout</a></li>
+                            </ul>
                         </div>
                     {% else %}
                         <div class="btn-group navbar-btn navbar-right">
