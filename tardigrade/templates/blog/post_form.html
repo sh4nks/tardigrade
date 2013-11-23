@@ -1,0 +1,25 @@
+{% if mode == "edit" %}
+    {% set page_title = "Edit Post" %}
+{% else %}
+    {% set page_title = "New Post" %}
+{% endif %}
+{% extends theme("layout.html") %}
+
+{% block content %}
+{%- from theme("macros.html") import horizontal_field -%}
+<form class="form" method="post" name="new">
+    <fieldset>
+
+    {{ form.hidden_tag() }}
+
+    <legend>{% if mode == "edit" %}Edit{% else %}New{% endif %} Post</legend>
+
+    {{ horizontal_field(form.title) }}
+
+    {{ horizontal_field(form.content, rows="20") }}
+
+    <button type="submit" class="btn">Submit!</button>
+
+    </fieldset>
+</form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% set page_title = post.title %}
+
+{% extends theme("layout.html") %}
+{% block content %}
+    {% include "blog/post_layout.html" %}
+
+    {% if current_user.is_authenticated() %}
+            <i class="fa fa-trash"></i> <a href="{{ url_for('blog.edit_post', post_id=post.id) }}">Edit Post</a> |
+            <i class="fa fa-edit"></i> <a href="{{ url_for('blog.delete_post', post_id=post.id) }}">Delete Post</a>
+    {% endif %}
+
+
+    {% include "blog/comments.html" %}
+{% endblock %}

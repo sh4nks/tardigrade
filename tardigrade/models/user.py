@@ -30,6 +30,9 @@ class User(db.Model, UserMixin):
     lastseen = db.Column(db.DateTime, default=datetime.utcnow())
     locale = db.Column(db.String, default="en")
 
+    posts = db.relationship("Post", backref="user", lazy="dynamic")
+    comments = db.relationship("Comment", backref="user", lazy="dynamic")
+
     # Methods
     def __repr__(self):
         return "Username: %s" % self.username
