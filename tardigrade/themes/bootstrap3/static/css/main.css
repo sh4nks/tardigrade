@@ -164,23 +164,6 @@ margin-bottom: 0px;
 
 /* Tardigrade CSS Tweaking */
 
-/* Change col-sm-3 context-label */
-label.control-label {
-
-    max-width: 170px;
-
- }
-
-/* Bigger Register button */
-button.btn-success {
-    width: 250px;
-}
-
-/* Smaller input fields */
-input.form-control {
-    width: 300px;
-}
-
 @media screen and (min-width: 1200px) {
   /* Widen the fixed sidebar again */
   .sidebar.affix-bottom,
@@ -253,3 +236,12 @@ input.form-control {
 .blog-content h5 {
     font-weight:500;
 }
+
+.comments {
+  padding-top: 20px;
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+

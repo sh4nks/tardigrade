@@ -48,14 +48,12 @@
 </div>
 {%- endmacro -%}
 
-{%- macro render_field(field, div_class='', rows='') -%}
+{%- macro render_field(field, div_class='', label_class='sr-only', rows='') -%}
 <div class="form-group{%- if field.errors %} has-error{%- endif %}">
     {% if div_class %}
     <div class="{{ div_class }}">
-    {% else %}
-    <div class="col-sm-5">
     {% endif %}
-        <label>{{ field.label.text }}</label>
+        <label class="{{ label_class }}">{{ field.label.text }}</label>
         {%- if kwargs['required'] or field.flags.required -%}
             {% if rows %}
                 {{ field(class="form-control", required="required", rows=rows, placeholder=field.label.text) }}
@@ -72,7 +70,9 @@
 
         {{ field_description(field) }}
         {{ field_errors(field) }}
+    {% if div_class %}
     </div>
+    {% endif %}
 </div>
 {%- endmacro -%}
 
@@ -108,9 +108,9 @@
     {% if class %}
         {{ field.label(class=class) }}
     {% else %}
-        {{ field.label(class="col-sm-3 control-label") }}
+        {{ field.label(class="col-md-3 control-label") }}
     {% endif %}
-    <div class="col-sm-9">
+    <div class="col-md-4">
 
     {%- if kwargs['required'] or field.flags.required -%}
         {% if label_text %}
