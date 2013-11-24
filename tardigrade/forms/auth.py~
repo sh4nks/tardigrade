@@ -42,7 +42,7 @@ class RegisterForm(Form):
         Email(message=_("Invalid Email address"))])
 
     password = PasswordField(_("Password"), validators=[
-        Required(message=_("Password required")), Length(min=5)])
+        Required(message=_("Password required")), Length(min=5, max=999)])
 
     confirm_password = PasswordField(_("Confirm Password"), validators=[
         Required(message=_("Confirm Password required")),
