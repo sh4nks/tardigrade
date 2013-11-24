@@ -63,10 +63,6 @@ class Post(db.Model):
     def slug(self):
         return self.title
 
-    @property
-    def comment_count(self):
-        return self.comments.count()
-
     def save(self, user=None):
         # Update the post
         if self.id:
