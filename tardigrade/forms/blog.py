@@ -33,6 +33,6 @@ class CommentForm(Form):
     content = TextAreaField(_("Comment"), validators=[
         Required(message=_("You can't submit a comment without content"))])
 
-    def save(self, user):
+    def save(self, user, post):
         comment = Comment(**self.data)
-        return comment.save(user=user)
+        return comment.save(user=user, post=post)
