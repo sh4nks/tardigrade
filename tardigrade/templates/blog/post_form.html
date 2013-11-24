@@ -6,20 +6,16 @@
 {% extends theme("layout.html") %}
 
 {% block content %}
-{%- from theme("macros.html") import horizontal_field -%}
-<form class="form" method="post" name="new">
-    <fieldset>
-
+{%- from theme("macros.html") import render_field -%}
+<form class="form" role="form" method="post">
     {{ form.hidden_tag() }}
 
-    <legend>{% if mode == "edit" %}Edit{% else %}New{% endif %} Post</legend>
+    <h3>{% if mode == "edit" %}Edit{% else %}New{% endif %} Post</h3>
 
-    {{ horizontal_field(form.title) }}
+    {{ render_field(form.title, div_class="col-sm-12") }}
+    {{ render_field(form.content, div_class="col-sm-12", rows=12) }}
 
-    {{ horizontal_field(form.content, rows="20") }}
-
-    <button type="submit" class="btn">Submit!</button>
-
-    </fieldset>
+    <button type="submit" class="btn btn-success">Submit!</button>
 </form>
 {% endblock %}
+

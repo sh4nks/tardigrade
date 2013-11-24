@@ -23,7 +23,7 @@ def profile(username):
     user = User.query.filter_by(username=username).first()
     if not user:
         abort(404)
-    return render_template("user/profile.html")
+    return render_template("user/profile.html", user=user)
 
 
 @user.route("/settings")

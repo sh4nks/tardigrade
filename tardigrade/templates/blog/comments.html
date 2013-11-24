@@ -1,36 +1,39 @@
-{%- if current_user.is_authenticated() -%}
-<hr>
-<form class="form" method="post" name="new">
-    <fieldset>
-    {%- from theme('macros.html') import horizontal_field -%}
-    {{ form.hidden_tag() }}
+<div class="comments row">
+{% if form %}
+{% from theme("macros.html") import render_field %}
+    <div class="comment row">
+        <div class="col-sm-1">
+            <img src="//placehold.it/50x50"> <!-- TODO: add profile picture -->
+        </div>
+        <div class="col-md-6">
 
-    <legend>New Comment</legend>
+            <form role="form" class="form">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.content, rows=3) }}
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
 
-    {{ horizontal_field(form.content, rows="5") }}
-
-    <button type="submit" class="btn">Submit!</button>
-
-    </fieldset>
-</form>
-{%- else -%}
-<a href="{{ url_for('auth.login') }}">Login</a> or <a href="{{ url_for('auth.register') }}">Register</a> to comment on this post.
-{%- endif -%}
+        </div>
+    </div>
+    <hr>
+{% endif %}
 
 {%- if post.comments -%}
-    <table class="table table-hover">
     {%- for comment in post.comments -%}
-        <tr>
-            <td width="70px"><a href="{{ url_for('users.profile', username=comment.user.username) }}">No Profile Picture</a></td>
-            <td>
-                <p>{{ comment.user.username }}</p>
+        <div class="comment row">
+            <div class="col-sm-1">
+                <img src="//placehold.it/50x50"> <!-- TODO: add profile picture -->
+            </div>
+            <div class="col-md-11">
+                <div class="blog-info">
+                    <li><i class="fa fa-user"></i> <a href="#" class="">{{ comment.user.username }}</a></li>
+                    <li><i class="fa fa-calendar"></i> {{ comment.date_created|time_format }}</li>
+                </div>
 
-                <p><strong><span id="post{{ comment.id }}">{{ comment.content }}</span></strong></p>
-                {%- if current_user.is_authenticated() -%}
-                <i class="fa fa-edit"></i> <a href="{{ url_for('blog.delete_comment', comment_id=id) }}">Delete Comment</a>
-                {%- endif -%}
-            </td>
-        </tr>
+                <p>{{ comment.content }}</p>
+            </div>
+        </div>
     {%- endfor -%}
-    </table>
 {%- endif -%}
+
+</div> <!-- End comments row -->
