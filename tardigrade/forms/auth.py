@@ -12,14 +12,14 @@ from datetime import datetime
 
 from flask.ext.wtf import Form
 from wtforms import TextField, PasswordField, BooleanField, HiddenField
-from wtforms.validators import Required, Email, EqualTo, regexp, ValidationError
+from wtforms.validators import Required, Email, EqualTo, regexp, ValidationError, Length
 from flask.ext.babel import lazy_gettext as _
 
 from tardigrade.models.user import User
 
 USERNAME_RE = r"^[\w.+-]+$"
 is_username = regexp(USERNAME_RE,
-                     message=(_("You can only use letters, numbers or dashes")))
+                     message=(_("You may only use letters, numbers or dashes")))
 
 
 class LoginForm(Form):
@@ -39,26 +39,28 @@ class RegisterForm(Form):
 
     email = TextField(_("E-Mail"), validators=[
         Required(message=_("Email adress required")),
-        Email(message=_("This email is invalid"))])
+        Email(message=_("Invalid Email address"))])
 
     password = PasswordField(_("Password"), validators=[
-        Required(message=_("Password required"))])
+        Required(message=_("Password required")), Length(min=5)])
 
     confirm_password = PasswordField(_("Confirm Password"), validators=[
         Required(message=_("Confirm Password required")),
         EqualTo("password", message=_("Passwords do not match"))])
 
-    accept_tos = BooleanField(_("Accept Terms of Service"), default=True)
+    accept_tos = BooleanField(_("Accept Terms of Service"), 
+        default=False, validators=[
+        Required(message=_("You have to accept the Terms of Service"))])
 
     def validate_username(self, field):
         user = User.query.filter_by(username=field.data).first()
         if user:
-            raise ValidationError(_("This username is taken"))
+            raise ValidationError(_("This username is already taken"))
 
     def validate_email(self, field):
         email = User.query.filter_by(email=field.data).first()
         if email:
-            raise ValidationError(_("This email is taken"))
+            raise ValidationError(_("This e-Mail is already taken"))
 
     def save(self):
         user = User(username=self.username.data,
@@ -90,9 +92,9 @@ class ResetPasswordForm(Form):
 
     confirm_password = PasswordField(_("Confirm password"), validators=[
         Required(),
-        EqualTo("password", message=_("Passwords must match"))])
+        EqualTo("password", message=_("Passwords do not match"))])
 
     def validate_email(self, field):
         email = User.query.filter_by(email=field.data).first()
         if not email:
-            raise ValidationError(_("Wrong E-Mail."))
+            raise ValidationError(_("Wrong e-Mail address."))
