@@ -10,12 +10,17 @@
     :license: BSD, see LICENSE for more details.
 """
 import os
+import datetime
+
 from flask import current_app
 from flask.ext.script import Manager, Shell, Server
 
 from tardigrade import create_app
 from tardigrade.configs.development import DevelopmentConfig
 from tardigrade.extensions import db
+from tardigrade.models.user import User
+from tardigrade.models.blog import Post, Comment
+
 
 # Use the development configuration if available
 app = create_app(DevelopmentConfig)
@@ -51,6 +56,17 @@ def createall():
         os.remove(dbfile)
 
     db.create_all()
+
+    user = User(username="test1", password="test", email="test@example.org")
+    user.save()
+
+    post = Post(title="Example 1", content="Example Content",
+                date_created=datetime.datetime.utcnow())
+    post.save(user)
+
+    comment = Comment(content="Test Comment",
+                      date_created=datetime.datetime.utcnow())
+    comment.save(user, post)
 
 
 @manager.command
