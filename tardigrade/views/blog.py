@@ -26,12 +26,11 @@ def index():
 
 @blog.route("/post/<int:post_id>", methods=["POST", "GET"])
 @blog.route("/post/<int:post_id>-<slug>", methods=["POST", "GET"])
-def view_post(post_id):
+def view_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
     form = None
     if current_user.is_authenticated():
-
         form = CommentForm()
         if form.validate_on_submit():
             form.save(current_user, post)
@@ -58,7 +57,7 @@ def new_post():
 @blog.route("/post/<int:post_id>/edit", methods=["POST", "GET"])
 @blog.route("/post/<int:post_id>-<slug>/edit", methods=["POST", "GET"])
 @login_required
-def edit_post(post_id):
+def edit_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
     if not post.user_id == current_user.id:
@@ -71,6 +70,9 @@ def edit_post(post_id):
         flash("This post has been edited", "success")
         return redirect(url_for("blog.view_post", post_id=post.id,
                                 slug=post.slug))
+    else:
+        form.title.data = post.title
+        form.content.data = post.content
 
     return render_template("blog/post_form.html", post=post, form=form,
                            mode="edit")
@@ -79,7 +81,7 @@ def edit_post(post_id):
 @blog.route("/post/<int:post_id>/delete")
 @blog.route("/post/<int:post_id>-<slug>/delete")
 @login_required
-def delete_post(post_id):
+def delete_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
     if not post.user_id == current_user.id:

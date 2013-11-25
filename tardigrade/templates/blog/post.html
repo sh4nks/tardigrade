@@ -5,10 +5,53 @@
     {% include "blog/post_layout.html" %}
 
     {% if current_user.is_authenticated() %}
-            <i class="fa fa-trash"></i> <a href="{{ url_for('blog.edit_post', post_id=post.id) }}">Edit Post</a> |
-            <i class="fa fa-edit"></i> <a href="{{ url_for('blog.delete_post', post_id=post.id) }}">Delete Post</a>
+    <br/>
+    <a href="{{ url_for('blog.edit_post', post_id=post.id) }}">Edit Post</a> |
+    <a href="{{ url_for('blog.delete_post', post_id=post.id) }}">Delete Post</a>
     {% endif %}
 
+    <hr>
+    <div class="comments row">
+    {% if form %}
+    {% from theme("macros.html") import render_field %}
+        <div class="comment row">
 
-    {% include "blog/comments.html" %}
+            <div class="col-sm-1">
+                <img src="//placehold.it/50x50"> <!-- TODO: add profile picture -->
+            </div>
+
+            <div class="col-md-6">
+                <form class="form" role="form" method="post">
+                    {{ form.hidden_tag() }}
+
+                    {{ render_field(form.content, rows=3) }}
+
+                    <button type="submit" class="btn btn-default">Submit!</button>
+                </form>
+            </div>
+
+        </div>
+        <hr>
+    {% endif %}
+
+    {%- if post.comments -%}
+        {%- for comment in post.comments -%}
+            <div class="comment row">
+                <div class="col-sm-1">
+                    <img src="//placehold.it/50x50"> <!-- TODO: add profile picture -->
+                </div>
+                <div class="col-md-11">
+                    <div class="blog-info">
+                        <li><i class="fa fa-user"></i> <a href="{{ url_for("user.profile", username=comment.user.username) }}" class="">{{ comment.user.username }}</a></li>
+                        <li><i class="fa fa-calendar"></i> {{ comment.date_created|time_format }}</li>
+                    </div>
+
+                    <p>{{ comment.content }}</p>
+                </div>
+            </div>
+        {%- endfor -%}
+    {%- endif -%}
+
+    </div> <!-- End comments row -->
+
 {% endblock %}

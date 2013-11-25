@@ -12,7 +12,8 @@ from datetime import datetime
 
 from flask.ext.wtf import Form
 from wtforms import TextField, PasswordField, BooleanField, HiddenField
-from wtforms.validators import Required, Email, EqualTo, regexp, ValidationError, Length
+from wtforms.validators import (Required, Email, EqualTo, regexp,
+                                ValidationError, Length)
 from flask.ext.babel import lazy_gettext as _
 
 from tardigrade.models.user import User
@@ -48,7 +49,7 @@ class RegisterForm(Form):
         Required(message=_("Confirm Password required")),
         EqualTo("password", message=_("Passwords do not match"))])
 
-    accept_tos = BooleanField(_("Accept Terms of Service"), 
+    accept_tos = BooleanField(_("Accept Terms of Service"),
         default=False, validators=[
         Required(message=_("You have to accept the Terms of Service"))])
 

@@ -20,7 +20,7 @@ from tardigrade.views.auth import auth
 from tardigrade.views.user import user
 from tardigrade.views.blog import blog
 from tardigrade.extensions import db, login_manager, mail, cache, babel, themes
-from tardigrade.helpers import render_template
+from tardigrade.helpers import render_template, time_format, time_since
 
 
 DEFAULT_BLUEPRINTS = (
@@ -115,7 +115,8 @@ def configure_template_filters(app):
     """
     Configures the template filters
     """
-    pass
+    app.jinja_env.filters['time_format'] = time_format
+    app.jinja_env.filters['time_since'] = time_since
 
 
 def configure_before_handlers(app):

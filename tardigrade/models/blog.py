@@ -11,6 +11,7 @@
 from datetime import datetime
 
 from tardigrade.extensions import db
+from tardigrade.helpers import slugify
 
 
 class Comment(db.Model):
@@ -61,11 +62,7 @@ class Post(db.Model):
 
     @property
     def slug(self):
-        return self.title
-
-    @property
-    def comment_count(self):
-        return self.comments.count()
+        return slugify(self.title)
 
     def save(self, user=None):
         # Update the post
