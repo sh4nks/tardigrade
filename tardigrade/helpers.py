@@ -8,15 +8,29 @@
     :copyright: (c) 2013 by the Tardigrade Team.
     :license: BSD, see LICENSE for more details.
 """
+import re
 from datetime import datetime
+from unicodedata import normalize
 
 from flask import session, current_app
 from flask.ext.themes2 import render_theme_template
+
+_punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 
 def render_template(template, **context):
     theme = session.get('theme', current_app.config['DEFAULT_THEME'])
     return render_theme_template(theme, template, **context)
+
+
+def slugify(text, delim=u'-'):
+    """Generates an slightly worse ASCII-only slug."""
+    result = []
+    for word in _punct_re.split(text.lower()):
+        word = normalize('NFKD', word).encode('ascii', 'ignore')
+        if word:
+            result.append(word)
+    return unicode(delim.join(result))
 
 
 def time_format(value, format='%Y-%m-%d'):
