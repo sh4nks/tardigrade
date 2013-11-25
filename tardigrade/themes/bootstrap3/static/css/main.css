@@ -161,9 +161,6 @@ margin-bottom: 0px;
 }
 
 
-
-/* Tardigrade CSS Tweaking */
-
 @media screen and (min-width: 1200px) {
   /* Widen the fixed sidebar again */
   .sidebar.affix-bottom,
