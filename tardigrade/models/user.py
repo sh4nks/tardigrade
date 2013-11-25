@@ -30,6 +30,15 @@ class User(db.Model, UserMixin):
     lastseen = db.Column(db.DateTime, default=datetime.utcnow())
     locale = db.Column(db.String, default="en")
 
+    # Maybe move this to another relation?
+    firstname = db.Column(db.String)
+    lastname = db.Column(db.String)
+    avatar = db.Column(db.String)
+    website = db.Column(db.String)
+    birthday = db.Column(db.DateTime)
+    gender = db.Column(db.String)
+    location = db.Column(db.String)
+
     posts = db.relationship("Post", backref="user", lazy="dynamic")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
 

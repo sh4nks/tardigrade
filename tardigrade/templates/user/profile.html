@@ -8,18 +8,43 @@
         <img class="db img-circle" src="//placehold.it/130x130">
     </a>
     <div class="col-lg-5">
-        <h4>John Doe<small> Example Country</small></h4>
+        <h4>
+            {% if user.firstname %}
+                {{ user.firstname }}
+                {% if user.lastname %}
+                    {{ user.lastname }}
+                {% endif %}
+            {% else %}
+                {{ user.username }}
+            {% endif %}
+
+            {% if user.location %}
+                <small> {{ user.location }}</small>
+            {% endif %}
+        </h4>
+
+        <!-- TODO: Add a small info field -->
         <h5>Software Developer at <a href="http://example.com">Example Ltd.</a></h5>
 
+        {% if user.email %}
         <a href="#" class="btn btn-default btn-xs" role="button">
             <span class="fa fa-envelope"></span> E-Mail
         </a>
+        {% endif %}
+
+        {% if user.website %}
         <a href="#" class="btn btn-default btn-xs" role="button">
             <span class="fa fa-globe"></span> WWW
         </a>
+        {% endif %}
+
+        {% if user.birthday %}
         <span class="btn btn-default btn-xs" role="button">
             <span class="fa fa-gift"></span> January 30, 1974
         </span>
+        {% endif %}
+
+        <!-- TODO: Add interests -->
         <hr style="margin:8px auto">
         <span class="label label-default">Open Source</span>
         <span class="label label-default">Flask</span>
@@ -29,23 +54,16 @@
 </div>
 <hr>
 
-<h1><a href="/post/1">Demo Title</a></h1>
+{% for post in user.posts %}
+<h1><a href="{{ url_for('blog.view_post', post_id=post.id, slug=post.slug) }}">{{ post.title }}</a></h1>
 <ul class="blog-info">
-    <li><i class="fa fa-calendar"></i> February 31, 2014</li>
-    <li><i class="fa fa-user"></i> <a href="/user/test1">John Doe</a></li>
-    <li><i class="fa fa-comment"></i> <a href="/post/1">Comments (0)</a></li>
+    <li><i class="fa fa-calendar"></i> {{ post.date_created|time_format }}</li>
+    <li><i class="fa fa-user"></i> <a href="{{ url_for('user.profile', username=post.user.username) }}">{{ post.user.username }}</a></li>
+    <li><i class="fa fa-comment"></i> <a href="{{ url_for('blog.view_post', post_id=post.id, slug=post.slug) }}">Comments ({{ post.comment_count }})</a></li>
 </ul>
-<div class="blog-content">
-    Demo Content<br />
-</div>
 
-<h1><a href="/post/1">Demo Title 2</a></h1>
-<ul class="blog-info">
-    <li><i class="fa fa-calendar"></i> December 32, 2014</li>
-    <li><i class="fa fa-user"></i> <a href="/user/test1">John Doe</a></li>
-    <li><i class="fa fa-comment"></i> <a href="/post/1">Comments (10)</a></li>
-</ul>
 <div class="blog-content">
-    Demo Content 2<br />
+    {{ post.content }}<br />
 </div>
+{% endfor %}
 {% endblock %}
