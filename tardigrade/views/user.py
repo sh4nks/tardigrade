@@ -31,6 +31,12 @@ def profile(username):
     return render_template("user/profile.html", user=user)
 
 
+@user.route("/<username>/blog")
+def userblog(username):
+    user = User.query.filter_by(username=username).first()
+    return render_template("user/blog.html", posts=user.posts)
+
+
 @user.route("/settings")
 @login_required
 def settings():

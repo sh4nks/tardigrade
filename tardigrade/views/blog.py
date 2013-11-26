@@ -20,7 +20,7 @@ blog = Blueprint("blog", __name__)
 
 @blog.route("/")
 def index():
-    posts = Post.query.all()
+    posts = Post.query.filter_by(is_global=True).all()
     return render_template("blog/index.html", posts=posts)
 
 

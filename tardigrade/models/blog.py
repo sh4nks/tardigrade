@@ -53,6 +53,7 @@ class Post(db.Model):
     title = db.Column(db.String)
     content = db.Column(db.Text)
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
+    is_global = db.Column(db.Boolean, default=True)
 
     comment_count = db.column_property(
         db.select([db.func.count(Comment.id)]).where(Comment.post_id == id).
