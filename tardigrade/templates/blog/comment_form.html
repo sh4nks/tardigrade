@@ -14,7 +14,7 @@
 
     <h3>{% if mode == "edit" %}Edit{% else %}New{% endif %} Comment</h3>
 
-    {{ render_field(form.content, div_class="col-sm-12", rows=12) }}
+    {{ render_field(form.content, div_class="col-sm-12", rows=12, min-width:100px) }}
 
     <button type="submit" class="btn btn-success">Submit!</button>
 </form>
