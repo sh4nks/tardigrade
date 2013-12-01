@@ -36,6 +36,7 @@
                         <ul class="nav navbar-nav">
                             {# active_forum_nav is set in {forum, category, topic}.html and new_{topic, post}.html #}
                             {{ topnav(endpoint='blog.index', name='Blog', icon='fa fa-comment') }}
+                            {# topnav(endpoint='pastebin.index', name='Paste Bin', icon='fa fa-comment') #}
                         </ul>
 
                     {% if current_user and current_user.is_authenticated() %}

@@ -4,27 +4,6 @@ body {
     background-color: #f5f5f5;
 }
 
-
-.navbar-static-top {
-    background-color: #d2405a;
-    color: #fff;
-}
-
-.btn {
-    border: #FFF solid 1px;
-    background-color: #d2405a;
-}
-
-.btn:hover {
-    border: #FFF solid 1px;
-    background-color: #dd627e;
-}
-
-.btn:active {
-    border: #FFF solid 1px;
-    background-color: #dd627e;
-}
-
 hr {
     background-color: #000;
     box-shadow: 0px 0px 1px #ddd;
@@ -36,6 +15,34 @@ h1 {
 
 a {
     color: inherit;
+}
+
+.navbar-static-top {
+    background-color: #d2405a;
+    color: #fff;
+}
+
+.btn {
+    border: #FFF solid 1px;
+    background-color: #d2405a;
+    color: #fff;
+}
+
+.btn:hover {
+    border: #FFF solid 1px;
+    background-color: #dd627e;
+    color: #fff;
+}
+
+.btn:active {
+    border: #FFF solid 1px;
+    background-color: #dd627e;
+}
+
+.alert-success {
+
+    background: none;
+
 }
 
 /* Wrapper for page content to push down footer */
