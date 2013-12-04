@@ -17,6 +17,16 @@ a {
     color: inherit;
 }
 
+a > li {
+    color: #000;
+}
+
+.form-control {
+
+    background-color: #eef;
+
+}
+
 .navbar-static-top {
     background-color: #d2405a;
     color: #fff;
@@ -131,9 +141,6 @@ a:hover {
     color: inherit;
 }
 
-.fa {
-    color:#ddd;
-}
 
 /*
  * Side navigation

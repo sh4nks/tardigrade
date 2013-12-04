@@ -136,7 +136,7 @@
 {% macro topnav(endpoint, name, icon='', active=False) %}
 <li {% if endpoint == request.endpoint or active == True %}class="active"{% endif %}>
     <a href={{ url_for(endpoint) }}>
-        {% if icon %}<i class="{{ icon }}"></i> {% endif %}{{ name }}
+        {% if icon %}<i class="{{ icon }}" style="color:#555"></i> {% endif %}{{ name }}
     </a>
 </li>
 {% endmacro %}
