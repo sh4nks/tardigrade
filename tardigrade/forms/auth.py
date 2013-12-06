@@ -49,8 +49,8 @@ class RegisterForm(Form):
         Required(message=_("Confirm Password required")),
         EqualTo("password", message=_("Passwords do not match"))])
 
-    accept_tos = BooleanField(_("Accept Terms of Service"),
-        default=False, validators=[
+    accept_tos = BooleanField(
+        _("Accept Terms of Service"), default=False, validators=[
         Required(message=_("You have to accept the Terms of Service"))])
 
     def validate_username(self, field):

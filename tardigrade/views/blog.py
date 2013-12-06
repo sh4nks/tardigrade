@@ -82,7 +82,9 @@ def edit_post(post_id, slug=None):
 
     form = PostForm()
     if form.validate_on_submit():
-        form.save(current_user)
+        # this will update the changed attributes
+        form.populate_obj(post)
+        post.save()
         flash("This post has been edited", "success")
         return redirect(url_for("blog.view_post", post_id=post.id,
                                 slug=post.slug))
@@ -138,6 +140,7 @@ def edit_comment(comment_id):
 
     form = CommentForm()
     if form.validate_on_submit():
+        form.populate_obj(comment)
         comment.save()
         flash("Your comment has been edited.", "success")
         return redirect(url_for("blog.view_post", post_id=comment.post.id,
@@ -157,8 +160,7 @@ def delete_comment(comment_id):
         flash("You are not allowed to delete this post", "danger")
         return redirect(url_for("blog.view_post", post_id=comment.post.id,
                                 slug=comment.post.slug))
-
+    post = comment.post
     comment.delete()
     flash("Your comment has been edited.", "success")
-    return redirect(url_for("blog.view_post", post_id=comment.post.id,
-                            slug=comment.post.slug))
+    return redirect(url_for("blog.view_post", post_id=post.id, slug=post.slug))
