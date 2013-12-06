@@ -15,9 +15,14 @@ from tardigrade.models.blog import Post, Comment
 from tardigrade.forms.blog import CommentForm, PostForm
 from tardigrade.helpers import render_template
 
+# This will create a blueprint named `blog`
+# to make it available in other blueprints for example when you want to use
+# url_for("blog.index"), you need to register it at the flask instance
+# you can do it like this `app.register_blueprint` - see app.py
 blog = Blueprint("blog", __name__)
 
 
+# Now you can access the blueprint via `blog`
 @blog.route("/")
 def index():
     posts = Post.query.filter_by(is_global=True).all()
@@ -29,12 +34,21 @@ def index():
 def view_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
+    # if you do not initialize the form, it will raise an error when user is
+    # not registered
     form = None
+    # check if the current user is authenticated
     if current_user.is_authenticated():
+        # assign the `form` variable the `CommentForm` class
         form = CommentForm()
+
+        # check if the form has any errors and is a `POST` request
         if form.validate_on_submit():
+            # save the post
             form.save(current_user, post)
             flash("Your comment has been saved!", "success")
+
+            # and finally redirect to the post
             return redirect(url_for("blog.view_post", post_id=post.id,
                                     slug=post.slug))
 
@@ -60,6 +74,8 @@ def new_post():
 def edit_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
+    # TODO: more permissions checks like admin, staff
+    # check if the user has the right permissions to edit this post
     if not post.user_id == current_user.id:
         flash("You are not allowed to delete this post.", "danger")
         return redirect(url_for("blog.index"))
