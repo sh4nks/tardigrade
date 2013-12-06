@@ -68,7 +68,7 @@ def reauth():
 @login_required
 def logout():
     logout_user()
-    flash(("Logged out"), "success")
+    flash(_("Logged out"), "success")
     return redirect(url_for("blog.index"))
 
 

@@ -10,6 +10,7 @@
 """
 from flask import Blueprint, redirect, url_for, flash
 from flask.ext.login import login_required, current_user
+from flask.ext.babel import gettext as _
 
 from tardigrade.models.blog import Post, Comment
 from tardigrade.forms.blog import CommentForm, PostForm
@@ -46,7 +47,7 @@ def view_post(post_id, slug=None):
         if form.validate_on_submit():
             # save the post
             form.save(current_user, post)
-            flash("Your comment has been saved!", "success")
+            flash(_("Your comment has been saved!", "success"))
 
             # and finally redirect to the post
             return redirect(url_for("blog.view_post", post_id=post.id,
@@ -62,7 +63,7 @@ def new_post():
 
     if form.validate_on_submit():
         post = form.save(current_user)
-        flash("Your post has been saved!", "success")
+        flash(_("Your post has been saved!", "success"))
         return redirect(url_for("blog.view_post", post_id=post.id))
 
     return render_template("blog/post_form.html", form=form, mode="new")
@@ -77,7 +78,7 @@ def edit_post(post_id, slug=None):
     # TODO: more permissions checks like admin, staff
     # check if the user has the right permissions to edit this post
     if not post.user_id == current_user.id:
-        flash("You are not allowed to delete this post.", "danger")
+        flash(_("You are not allowed to delete this post.", "danger"))
         return redirect(url_for("blog.index"))
 
     form = PostForm()
@@ -85,7 +86,7 @@ def edit_post(post_id, slug=None):
         # this will update the changed attributes
         form.populate_obj(post)
         post.save()
-        flash("This post has been edited", "success")
+        flash(_("This post has been edited", "success"))
         return redirect(url_for("blog.view_post", post_id=post.id,
                                 slug=post.slug))
     else:
@@ -103,11 +104,11 @@ def delete_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
     if not post.user_id == current_user.id:
-        flash("You are not allowed to delete this post.", "danger")
+        flash(_("You are not allowed to delete this post.", "danger"))
         return redirect(url_for("blog.index"))
 
     post.delete()
-    flash("This post has been deleted", "success")
+    flash(_("This post has been deleted", "success"))
     return redirect(url_for("blog.index"))
 
 
@@ -120,7 +121,7 @@ def new_comment(post_id):
     form = CommentForm()
     if form.validate_on_submit():
         form.save(current_user, post)
-        flash("Your comment has been saved!", "success")
+        flash(_("Your comment has been saved!", "success"))
         return redirect(url_for("blog.view_post", post_id=post.id,
                                 slug=post.slug))
 
@@ -134,7 +135,7 @@ def edit_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
 
     if not comment.user_id == current_user.id:
-        flash("You are not allowed to edit this comment", "danger")
+        flash(_("You are not allowed to edit this comment", "danger"))
         return redirect(url_for("blog.view_post", post_id=comment.post.id,
                                 slug=comment.post.slug))
 
@@ -142,7 +143,7 @@ def edit_comment(comment_id):
     if form.validate_on_submit():
         form.populate_obj(comment)
         comment.save()
-        flash("Your comment has been edited.", "success")
+        flash(_("Your comment has been edited.", "success"))
         return redirect(url_for("blog.view_post", post_id=comment.post.id,
                                 slug=comment.post.slug))
     else:
@@ -157,10 +158,10 @@ def delete_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
 
     if not comment.user_id == current_user.id:
-        flash("You are not allowed to delete this post", "danger")
+        flash(_("You are not allowed to delete this post", "danger"))
         return redirect(url_for("blog.view_post", post_id=comment.post.id,
                                 slug=comment.post.slug))
     post = comment.post
     comment.delete()
-    flash("Your comment has been edited.", "success")
+    flash(_("Your comment has been edited.", "success"))
     return redirect(url_for("blog.view_post", post_id=post.id, slug=post.slug))
