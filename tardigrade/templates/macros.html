@@ -133,10 +133,15 @@
 {%- endmacro -%}
 
 
-{% macro topnav(endpoint, name, icon='', active=False) %}
+{% macro topnav(endpoint, name, icon='', active=False, fontcolor=False) %}
 <li {% if endpoint == request.endpoint or active == True %}class="active"{% endif %}>
     <a href={{ url_for(endpoint) }}>
-        {% if icon %}<i class="{{ icon }}" style="color:#555"></i> {% endif %}{{ name }}
+        {% if icon %}<i class="{{ icon }}" style="color:#555"></i> {% endif %}
+        {% if fontcolor and (endpoint == request.endpoint or active == True) %}
+            <span style="color: #00F">{{ name }}</span>
+        {% else %}
+            {{ name }}
+        {% endif %}
     </a>
 </li>
 {% endmacro %}

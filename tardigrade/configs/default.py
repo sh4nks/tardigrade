@@ -41,7 +41,7 @@ class DefaultConfig(object):
     # Auth
     LOGIN_VIEW = "auth.login"
     REAUTH_VIEW = "auth.reauth"
-    LOGIN_MESSAGE_CATEGORY = "error"
+    LOGIN_MESSAGE_CATEGORY = "danger"
 
     # Caching
     CACHE_TYPE = "simple"
