@@ -19,6 +19,10 @@ _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 
 def render_template(template, **context):
+    """
+    A helper function that uses the `render_theme_template` function
+    without needing to edit all the views
+    """
     theme = session.get('theme', current_app.config['DEFAULT_THEME'])
     return render_theme_template(theme, template, **context)
 
