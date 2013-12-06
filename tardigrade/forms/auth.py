@@ -63,11 +63,13 @@ class RegisterForm(Form):
         if email:
             raise ValidationError(_("This e-Mail is already taken"))
 
-    def save(self):
+    def save(self, theme, language):
         user = User(username=self.username.data,
                     email=self.email.data,
                     password=self.password.data,
-                    date_joined=datetime.utcnow())
+                    date_joined=datetime.utcnow(),
+                    language=language,
+                    theme=theme)
         return user.save()
 
 

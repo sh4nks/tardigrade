@@ -8,15 +8,15 @@
     :copyright: (c) 2013 by the Tardigrade Team.
     :license: BSD, see LICENSE for more details.
 """
-from flask import (Blueprint, abort, current_app, url_for, redirect, session,
-                   flash)
-from flask.ext.login import login_required, current_user
+from flask import Blueprint, abort, url_for, redirect, flash, current_app
+
 from flask.ext.themes2 import get_themes_list
+from flask.ext.login import login_required, current_user
 from flask.ext.babel import gettext as _
 
 from tardigrade.models.user import User
 from tardigrade.forms.user import (ChangeEmailForm, ChangePasswordForm,
-                                   ChangeUserDetailsForm)
+                                   ChangeUserDetailsForm, ChangeOtherForm)
 from tardigrade.helpers import render_template
 
 
@@ -37,16 +37,36 @@ def userblog(username):
     return render_template("user/blog.html", posts=user.posts)
 
 
-@user.route("/settings")
+@user.route("/settings/")
 @login_required
 def settings():
-    return render_template("user/settings.html")
+    # to be continued
+    return redirect(url_for("user.change_other"))
 
 
-@user.route("/settings/themes")
-def themes():
-    themes = get_themes_list()
-    return render_template("user/themes.html", themes=themes)
+@user.route("/settings/other", methods=["POST", "GET"])
+@login_required
+def change_other():
+    form = ChangeOtherForm()
+
+    form.language.choices = [(locale, name)
+                             for locale, name in
+                             current_app.config["AVAILABLE_LANGUAGES"].
+                             iteritems()]
+
+    form.theme.choices = [(theme.identifier, theme.name)
+                          for theme in get_themes_list()]
+
+    if form.validate_on_submit():
+        form.populate_obj(current_user)
+        current_user.save()
+        flash(_("Your settings have been updated."), "success")
+        return redirect(url_for("user.change_other"))
+    else:
+        form.theme.data = current_user.theme
+        form.language.data = current_user.language
+
+    return render_template("user/change_other.html", form=form)
 
 
 @user.route("/settings/change-email", methods=["POST", "GET"])
@@ -85,7 +105,7 @@ def change_user_details():
         form.populate_obj(current_user)
         current_user.save()
 
-        flash("Your details have been updated!", "success")
+        flash(_("Your details have been updated!", "success"))
         return redirect(url_for("user.change_user_details"))
     else:
         form.birthday.data = current_user.birthday
@@ -97,11 +117,3 @@ def change_user_details():
         form.avatar.data = current_user.avatar
 
     return render_template("user/change_user_details.html", form=form)
-
-
-@user.route('/settings/themes/<ident>')
-def set_theme(ident):
-    if ident not in current_app.theme_manager.themes:
-        abort(404)
-    session['theme'] = ident
-    return redirect(url_for('user.themes'))

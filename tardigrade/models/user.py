@@ -28,7 +28,8 @@ class User(db.Model, UserMixin):
     _password = db.Column('password', db.String(80), nullable=False)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow())
     lastseen = db.Column(db.DateTime, default=datetime.utcnow())
-    locale = db.Column(db.String, default="en")
+    language = db.Column(db.String)
+    theme = db.Column(db.String)
 
     # Maybe move this to another relation?
     firstname = db.Column(db.String)

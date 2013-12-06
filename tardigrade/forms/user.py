@@ -9,8 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask.ext.wtf import Form
-from wtforms import (TextField, PasswordField, DateField, SelectField,
-                     TextAreaField)
+from wtforms import TextField, PasswordField, DateField, SelectField
 from wtforms.validators import (Required, Optional, Email, URL, EqualTo, regexp,
                                 ValidationError)
 from flask.ext.babel import lazy_gettext as _
@@ -87,3 +86,10 @@ class ChangeUserDetailsForm(Form):
 
     avatar = TextField(_("Avatar"), validators=[
         Optional(), URL()])
+
+
+class ChangeOtherForm(Form):
+    # The choices for those fields will be generated in the user view
+    # because we cannot access the current_app outside of the context
+    language = SelectField(_("Language"))
+    theme = SelectField(_("Theme"))

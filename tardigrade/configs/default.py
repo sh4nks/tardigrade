@@ -65,6 +65,6 @@ class DefaultConfig(object):
     ADMINS = ["admin@example.org"]
 
     BABEL_DEFAULT_LOCALE = 'en'
-    AVAILABLE_LOCALES = ["en", "de"]
+    AVAILABLE_LANGUAGES = {"en": "English", "de": "German"}
 
     DEFAULT_THEME = "bootstrap3"

@@ -57,16 +57,24 @@ def createall():
 
     db.create_all()
 
-    user = User(username="test1", password="test", email="test@example.org")
-    user.save()
+    user1 = User(username="test1", password="test", email="test@example.org",
+                 theme=current_app.config["DEFAULT_THEME"],
+                 language=current_app.config["BABEL_DEFAULT_LOCALE"])
+    user1.save()
+
+    user2 = User(username="test2", password="test", email="test2@example.org",
+                 theme="bootstrap2",
+                 language="de")
+
+    user2.save()
 
     post = Post(title="Example 1", content="Example Content",
                 date_created=datetime.datetime.utcnow())
-    post.save(user)
+    post.save(user1)
 
     comment = Comment(content="Test Comment",
                       date_created=datetime.datetime.utcnow())
-    comment.save(user, post)
+    comment.save(user2, post)
 
 
 @manager.command

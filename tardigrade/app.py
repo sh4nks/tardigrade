@@ -94,13 +94,13 @@ def configure_extensions(app):
     @babel.localeselector
     def get_locale():
         # if a user is logged in, use the locale from the user settings
-        if current_user.is_authenticated():
-            return current_user.locale
+        if current_user.is_authenticated() and current_user.language:
+            return current_user.language
         # otherwise try to guess the language from the user accept
         # header the browser transmits.  We support de/en in this
         # example. The best match wins.
         return request.accept_languages.\
-            best_match(app.config.get("AVAILABLE_LANGUAGES", ["en"]))
+            best_match(app.config["AVAILABLE_LANGUAGES"].keys())
 
 
 def configure_blueprints(app, blueprints):

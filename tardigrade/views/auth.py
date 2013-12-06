@@ -9,7 +9,7 @@
     :copyright: (c) 2013 by the Tardigrade Team.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Blueprint, flash, redirect, url_for, request
+from flask import Blueprint, flash, redirect, url_for, request, current_app
 from flask.ext.login import (current_user, login_user, login_required,
                              logout_user, confirm_login, login_fresh)
 from flask.ext.babel import gettext as _
@@ -83,7 +83,8 @@ def register():
 
     form = RegisterForm(request.form)
     if form.validate_on_submit():
-        user = form.save()
+        user = form.save(theme=current_app.config["DEFAULT_THEME"],
+                         language=current_app.config["BABEL_DEFAULT_LOCALE"])
         login_user(user)
 
         flash(_("Thanks for registering"), "success")
