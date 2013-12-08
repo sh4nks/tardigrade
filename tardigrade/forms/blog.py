@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    tardigrade.forms.auth
+    tardigrade.forms.blog
     ~~~~~~~~~~~~~~~~~~~~~
 
-    It provides the forms that are needed for the auth views.
+    It provides the forms that are needed for the blog views.
 
     :copyright: (c) 2013 by the Tardigrade Team.
     :license: BSD, see LICENSE for more details.

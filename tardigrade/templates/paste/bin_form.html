@@ -1,7 +1,7 @@
 {% if mode == "edit" %}
-    {% set page_title = "Edit Post" %}
+    {% set page_title = "Edit Paste-Bin" %}
 {% else %}
-    {% set page_title = "New Post" %}
+    {% set page_title = "New Paste-Bin" %}
 {% endif %}
 {% extends theme("layout.html") %}
 
@@ -10,9 +10,9 @@
 <form class="form" role="form" method="post">
     {{ form.hidden_tag() }}
 
-    <h3>{% if mode == "edit" %}Edit{% else %}New{% endif %} Post</h3>
+    <h3>{% if mode == "edit" %}Edit{% else %}New{% endif %} Paste-Bin</h3>
 
-    {{ render_field(form.title, div_class="col-sm-6") }} <br />
+    {{ render_field(form.description, div_class="col-sm-6") }} <br />
     {{ render_field(form.content, div_class="col-sm-7", rows=12) }}
 
     <button type="submit" class="btn btn-success">Submit</button>

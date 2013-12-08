@@ -1,0 +1,16 @@
+<div class="col-sm-12">
+    <div class="row">
+
+        <h1><a href="{{ url_for('bin.view_post', post_id=bin.id, slug=bin.slug) }}">{{ bin.description }}</a></h1>
+        <ul class="blog-info">
+            <li><i class="fa fa-calendar"></i> {{ bin.date_created|time_format }}</li>
+            <li><i class="fa fa-user"></i> <a href="{{ url_for('user.profile', username=post.user.username) }}">{{ bin.user.username }}</a></li>
+
+        </ul>
+
+        <div class="blog-content">
+            {{ bin.content }}<br />
+        </div>
+
+    </div>
+</div>

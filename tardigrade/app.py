@@ -19,7 +19,7 @@ from tardigrade.models.user import User
 from tardigrade.views.auth import auth
 from tardigrade.views.user import user
 from tardigrade.views.blog import blog
-#from tardigrade.views.pastebin import pastebin
+from tardigrade.views.paste import paste
 from tardigrade.extensions import db, login_manager, mail, cache, babel, themes
 from tardigrade.helpers import render_template, time_format, time_since
 
@@ -27,7 +27,8 @@ from tardigrade.helpers import render_template, time_format, time_since
 DEFAULT_BLUEPRINTS = (
     (auth, ""),
     (user, "/user"),
-    (blog, "")
+    (blog, ""),
+    (paste, "/paste")
 )
 
 
