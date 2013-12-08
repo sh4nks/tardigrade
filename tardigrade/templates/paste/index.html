@@ -4,8 +4,8 @@
 {% extends theme("layout.html") %}
 {% block content %}
 
-{% for post in posts %}
-    {% include 'bin/bin_layout.html' %}
+{% for pastebin in posts %}
+    {% include 'paste/bin_layout.html' %}
     {% if not loop.last %}<hr>{% endif %}
 {% endfor %}
 

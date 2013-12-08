@@ -28,13 +28,13 @@ class Bin(db.Model):
         return slugify(self.description)
 
     def save(self, user=None):
-        # Update the post
+        # Update the bin
         if self.id:
             db.session.add(self)
             db.session.commit()
             return self
 
-        # Create a new post
+        # Create a new bin
         if user:
             self.user_id = user.id
 

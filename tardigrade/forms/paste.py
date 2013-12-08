@@ -25,6 +25,6 @@ class BinForm(Form):
         Required(message=_("You can't create a pase-bin without content"))])
 
     def save(self, user):
-        post = Post(**self.data)
-        return post.save(user=user)
+        pastebin = Bin(**self.data)
+        return pastebin.save(user=user)
 

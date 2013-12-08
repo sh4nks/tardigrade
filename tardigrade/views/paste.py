@@ -18,18 +18,18 @@ from tardigrade.helpers import render_template
 paste = Blueprint("paste", __name__)
 
 
-@paste.route("/")
+@paste.route("/", methods=["POST", "GET"])
 def index():
     return new_bin()
 
 
-@paste.route("/bin/<int:post_id>", methods=["POST", "GET"])
-@paste.route("/bin/<int:post_id>-<slug>", methods=["POST", "GET"])
-def view_bin(post_id, slug=None):
+@paste.route("/bin/<int:bin_id>", methods=["POST", "GET"])
+@paste.route("/bin/<int:bin_id>-<slug>", methods=["POST", "GET"])
+def view_bin(bin_id, slug=None):
 
-    post = Post.query.filter_by(id=post_id).first()
+    pastebin = Bin.query.filter_by(id=bin_id).first()
     form = None
-    return render_template("paste/bin.html", post=post, form=form)
+    return render_template("paste/bin.html", pastebin=pastebin, form=form)
 
 
 @paste.route("/bin/new", methods=["POST", "GET"])
@@ -38,47 +38,47 @@ def new_bin():
     form = BinForm()
 
     if form.validate_on_submit():
-        post = form.save(current_user)
+        pastebin = form.save(current_user)
         flash("Your paste-bin has been saved!", "success")
-        return redirect(url_for("paste.view_bin", post_id=post.id))
+        return redirect(url_for("paste.view_bin", bin_id=pastebin.id))
 
     return render_template("paste/bin_form.html", form=form, mode="new")
 
 
-@paste.route("/bin/<int:post_id>/edit", methods=["POST", "GET"])
-@paste.route("/bin/<int:post_id>-<slug>/edit", methods=["POST", "GET"])
+@paste.route("/bin/<int:bin_id>/edit", methods=["POST", "GET"])
+@paste.route("/bin/<int:bin_id>-<slug>/edit", methods=["POST", "GET"])
 @login_required
-def edit_post(post_id, slug=None):
-    post = Post.query.filter_by(id=post_id).first()
+def edit_bin(bin_id, slug=None):
+    pastebin = Bin.query.filter_by(id=bin_id).first()
 
-    if not post.user_id == current_user.id:
-        flash("You are not allowed to delete this post.", "danger")
+    if not pastebin.user_id == current_user.id:
+        flash("You are not allowed to delete this paste-bin.", "danger")
         return redirect(url_for("paste.index"))
 
-    form = PostForm()
+    form = BinForm()
     if form.validate_on_submit():
         form.save(current_user)
-        flash("This post has been edited", "success")
-        return redirect(url_for("blog.view_post", post_id=post.id,
-                                slug=post.slug))
+        flash("This paste-bin has been edited", "success")
+        return redirect(url_for("paste.view_bin", bin_id=pastebin.id,
+                                slug=pastebin.slug))
     else:
-        form.title.data = post.title
-        form.content.data = post.content
+        form.title.data = pastebin.title
+        form.content.data = pastebin.content
 
-    return render_template("blog/post_form.html", post=post, form=form,
+    return render_template("paste/bin_form.html", pastebin=pastebin, form=form,
                            mode="edit")
 
 
-@paste.route("/bin/<int:post_id>/delete")
-@paste.route("/bin/<int:post_id>-<slug>/delete")
+@paste.route("/bin/<int:bin_id>/delete")
+@paste.route("/bin/<int:bin_id>-<slug>/delete")
 @login_required
-def delete_post(post_id, slug=None):
-    post = Post.query.filter_by(id=post_id).first()
+def delete_bin(bin_id, slug=None):
+    pastebin = Bin.query.filter_by(id=bin_id).first()
 
-    if not post.user_id == current_user.id:
-        flash("You are not allowed to delete this post.", "danger")
-        return redirect(url_for("blog.index"))
+    if not pastebin.user_id == current_user.id:
+        flash("You are not allowed to delete this Paste-Bin.", "danger")
+        return redirect(url_for("paste.index"))
 
-    post.delete()
-    flash("This post has been deleted", "success")
-    return redirect(url_for("blog.index"))
+    pastebin.delete()
+    flash("This bin has been deleted", "success")
+    return redirect(url_for("paste.index"))

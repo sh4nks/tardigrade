@@ -1,15 +1,15 @@
 {% set active_bin=True %}
-{% set page_title = bin.description %}
+{% set page_title = pastebin.description %}
 
 {% extends theme("layout.html") %}
 {% block content %}
-    {% include "bin/bin_layout.html" %}
+    {% include "paste/bin_layout.html" %}
 
     {# TODO: Add filter for permissions checks #}
     {% if current_user.is_authenticated() %}
     <br/>
-    <a href="{{ url_for('paste.edit_bin', post_id=bin.id) }}">Edit Post</a> |
-    <a href="{{ url_for('paste.delete_bin', post_id=bin.id) }}">Delete Post</a>
+    <a href="{{ url_for('paste.edit_bin', bin_id=pastebin.id) }}">Edit Post</a> |
+    <a href="{{ url_for('paste.delete_bin', bin_id=pastebin.id) }}">Delete Post</a>
     {% endif %}
 
     <hr>    
