@@ -134,8 +134,15 @@
 
 
 {% macro topnav(endpoint, name, icon='', active=False) %}
-<li {% if endpoint == request.endpoint or active == True %}class="active"{% endif %}>
-    <a href={{ url_for(endpoint) }} style="color:#FFF">
+<li {% if endpoint == request.endpoint or active == True %}class="active" {% endif %}>
+    
+    <a href={{ url_for(endpoint) }} 
+        
+        {% if endpoint == request.endpoint or active == True %} 
+            style="background-color:#ddd; color: #000" 
+        {% else %}
+            style="color: #FFF"
+        {% endif %}>
         
         <!-- Check if icon is to show -->
         {% if icon %}
