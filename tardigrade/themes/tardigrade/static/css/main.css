@@ -27,11 +27,6 @@ a > li {
 
 }
 
-.navbar-static-top {
-    background-color: #d2405a;
-    color: #fff;
-}
-
 .btn {
     border: #FFF solid 1px;
     background-color: #d2405a;
@@ -113,24 +108,87 @@ border: 0 !important;
 margin-bottom: 0px;
 }
 
+
 /*
- * Nav Header
- * Got these lines from bootstrap 2.3.2
+ * Navbar
  */
-.nav-header {
-  display: block;
-  padding: 3px 15px;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 20px;
-  color: #999999;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
+.navbar-default {
+    background-color: #d2405a;
+    border-color: #dddddd;
 }
 
-.nav li + .nav-header {
-    color: #fff;
-  margin-top: 9px;
+.navbar-default .navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #222222;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #222222;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #222222;
+    background-color: #dddddd;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #222222;
+    background-color: #dddddd;
+}
+
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #222222;
+    border-bottom-color: #222222;
+}
+
+.navbar-default .navbar-nav > .open > a .caret,
+.navbar-default .navbar-nav > .open > a:hover .caret,
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #222222;
+    border-bottom-color: #222222;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #dddddd;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #dddddd;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ffffff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #222222;
+    }
 }
 
 .credit {

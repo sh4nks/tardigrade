@@ -1,9 +1,9 @@
 {
     "application": "tardigrade",
-    "identifier": "bootstrap3",
-    "name": "Bootstrap3",
+    "identifier": "tardigrade",
+    "name": "Tardigrade",
     "author": "sh4nks",
     "license": "BSD/Apache 2.0 (Bootstrap)",
-    "description": "The default bootstrap3 theme",
+    "description": "The default tardigrade theme",
     "version": "1.0.0"
 }
