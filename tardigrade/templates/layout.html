@@ -32,6 +32,7 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav">
                             {{ topnav(endpoint='blog.index', name='Blog', icon='fa fa-comment', active=active_blog) }}
+                            {{ topnav(endpoint='paste.index', name='Copy&Paste', icon='fa fa-edit') }}
                         </ul>
 
                     {% if current_user and current_user.is_authenticated() %}
