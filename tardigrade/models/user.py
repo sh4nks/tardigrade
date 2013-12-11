@@ -31,7 +31,6 @@ class User(db.Model, UserMixin):
     language = db.Column(db.String)
     theme = db.Column(db.String)
 
-    # Maybe move this to another relation?
     firstname = db.Column(db.String)
     lastname = db.Column(db.String)
     avatar = db.Column(db.String)
@@ -39,6 +38,7 @@ class User(db.Model, UserMixin):
     birthday = db.Column(db.DateTime)
     gender = db.Column(db.String)
     location = db.Column(db.String)
+    about_me = db.Column(db.String)
 
     posts = db.relationship("Post", backref="user", lazy="dynamic")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")

@@ -9,7 +9,8 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask.ext.wtf import Form
-from wtforms import TextField, PasswordField, DateField, SelectField
+from wtforms import (TextField, TextAreaField, PasswordField, DateField,
+                     SelectField)
 from wtforms.validators import (Required, Optional, Email, URL, EqualTo, regexp,
                                 ValidationError)
 from flask.ext.babel import lazy_gettext as _
@@ -86,6 +87,9 @@ class ChangeUserDetailsForm(Form):
 
     avatar = TextField(_("Avatar"), validators=[
         Optional(), URL()])
+
+    about_me = TextAreaField(_("About Me"), validators=[
+        Optional()])
 
 
 class ChangeOtherForm(Form):
