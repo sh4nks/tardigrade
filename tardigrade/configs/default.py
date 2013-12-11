@@ -67,4 +67,4 @@ class DefaultConfig(object):
     BABEL_DEFAULT_LOCALE = 'en'
     AVAILABLE_LANGUAGES = {"en": "English", "de": "German"}
 
-    DEFAULT_THEME = "bootstrap3"
+    DEFAULT_THEME = "tardigrade"
