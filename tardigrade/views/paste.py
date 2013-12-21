@@ -46,7 +46,7 @@ def view_bin(bin_id, slug=None):
         'XML':XmlLexer()
     }.get(pastebin.lang, None)
         
-    if (lexer):
+    if lexer:
         bincontent = highlight(pastebin.content, lexer, HtmlFormatter())
     else:
         bincontent = "<pre> {} </pre>".format(pastebin.content)
@@ -56,16 +56,12 @@ def view_bin(bin_id, slug=None):
 
     #Check if post is private and send user to login 
     #if yes and user not logged in
-    if not pastebin.is_public:
-        show_private_bin()
-        return render_template("auth/login.html", form=LoginForm())
+    if not pastebin.is_public and not current_user.is_authenticated():
+        return redirect(url_for("auth.login"))
 
     else:
         return render_template("paste/bin.html", pastebin=pastebin, form=form, style=style, bincontent=bincontent)
 
-@login_required
-def show_private_bin():
-    return render_template("paste/bin.html", pastebin=pastebin, form=form, style=style, bincontent=bincontent)
 
 
 @paste.route("/bin/new", methods=["POST", "GET"])
