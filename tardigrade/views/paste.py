@@ -16,6 +16,7 @@ from pygments.formatters import HtmlFormatter
 
 from tardigrade.models.paste import Bin
 from tardigrade.forms.paste import BinForm
+from tardigrade.forms.auth import LoginForm
 from tardigrade.helpers import render_template
 
 paste = Blueprint("paste", __name__)
@@ -24,10 +25,9 @@ paste = Blueprint("paste", __name__)
 @paste.route("/", methods=["POST", "GET"])
 def index():
     return new_bin()
-
+    
 
 @paste.route("/bin/<int:bin_id>", methods=["POST", "GET"])
-@paste.route("/bin/<int:bin_id>-<slug>", methods=["POST", "GET"])
 def view_bin(bin_id, slug=None):
 
     pastebin = Bin.query.filter_by(id=bin_id).first()
@@ -54,6 +54,17 @@ def view_bin(bin_id, slug=None):
     # The following sends the styleinfo to the template as well
     style = HtmlFormatter().get_style_defs('.highlight')
 
+    #Check if post is private and send user to login 
+    #if yes and user not logged in
+    if not pastebin.is_public:
+        show_private_bin()
+        return render_template("auth/login.html", form=LoginForm())
+
+    else:
+        return render_template("paste/bin.html", pastebin=pastebin, form=form, style=style, bincontent=bincontent)
+
+@login_required
+def show_private_bin():
     return render_template("paste/bin.html", pastebin=pastebin, form=form, style=style, bincontent=bincontent)
 
 
@@ -76,18 +87,18 @@ def new_bin():
 def edit_bin(bin_id, slug=None):
     pastebin = Bin.query.filter_by(id=bin_id).first()
 
-    if not pastebin.user_id == current_user.id:
-        flash("You are not allowed to delete this paste-bin.", "danger")
-        return redirect(url_for("paste.index"))
+    #Edit is more or less the same as creating a new one
+    #You can not actually overwrite the existing one
+    #You can just generate a new edited copy of it
 
-    form = BinForm()
+    #Default Language is the one of the original (current/to edit) post
+    form = BinForm(lang=pastebin.lang)
     if form.validate_on_submit():
-        form.save(current_user)
-        flash("This paste-bin has been edited", "success")
-        return redirect(url_for("paste.view_bin", bin_id=pastebin.id,
-                                slug=pastebin.slug))
+        pastebin = form.save(current_user)
+        flash("Your paste-bin has been saved!", "success")
+        return redirect(url_for("paste.view_bin", bin_id=pastebin.id))
     else:
-        form.description.data = pastebin.description
+        form.description.data = "{}*".format(pastebin.description)
         form.content.data = pastebin.content
 
     return render_template("paste/bin_form.html", pastebin=pastebin, form=form,

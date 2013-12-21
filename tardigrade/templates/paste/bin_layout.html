@@ -11,7 +11,12 @@
             <li><i class="fa fa-calendar"></i> {{ pastebin.date_created|time_format }}</li>
             <li><i class="fa fa-user"></i> <a href="{{ url_for('user.profile', username=pastebin.user.username) }}">{{ pastebin.user.username }}</a></li>
             <li><i class="fa fa-code"></i> {{ pastebin.lang }}</li>
+
+            {% if pastebin.is_public %}
             <li><i class="fa fa-globe"></i> This bin is public </li>
+            {% else %}
+            <li><i class="fa fa-lock"></i> This bin is private </li>
+            {% endif %}
         </ul>
       
         <!-- The "safe" keyword unescapes the HTML rendered by pygments -->
