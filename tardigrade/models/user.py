@@ -42,6 +42,7 @@ class User(db.Model, UserMixin):
 
     posts = db.relationship("Post", backref="user", lazy="dynamic")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
+    pastebin = db.relationship("Bin", backref="user", lazy="dynamic")
 
     # Methods
     def __repr__(self):

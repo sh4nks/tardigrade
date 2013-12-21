@@ -13,6 +13,7 @@ coming soon!
 * [Flask-Cache](http://pythonhosted.org/Flask-Cache/)
 * [Flask-Mail](http://pythonhosted.org/flask-mail/)
 * [Flask-Script](http://flask-script.readthedocs.org/en/latest/)
+* [Pygments](http://pygments.org) 
 
 
 ## INSTALLATION

@@ -10,6 +10,9 @@
 """
 from flask import Blueprint, redirect, url_for, flash
 from flask.ext.login import login_required, current_user
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
 
 from tardigrade.models.paste import Bin
 from tardigrade.forms.paste import BinForm
@@ -29,7 +32,14 @@ def view_bin(bin_id, slug=None):
 
     pastebin = Bin.query.filter_by(id=bin_id).first()
     form = None
-    return render_template("paste/bin.html", pastebin=pastebin, form=form)
+
+    # User Pygments here to highlight syntax in HTML output
+    bincontent = highlight(pastebin.content, PythonLexer(), HtmlFormatter())
+
+    # The following sends the styleinfo to the template as well
+    style = HtmlFormatter().get_style_defs('.highlight')
+
+    return render_template("paste/bin.html", pastebin=pastebin, form=form, style=style, bincontent=bincontent)
 
 
 @paste.route("/bin/new", methods=["POST", "GET"])
@@ -62,7 +72,7 @@ def edit_bin(bin_id, slug=None):
         return redirect(url_for("paste.view_bin", bin_id=pastebin.id,
                                 slug=pastebin.slug))
     else:
-        form.title.data = pastebin.title
+        form.description.data = pastebin.description
         form.content.data = pastebin.content
 
     return render_template("paste/bin_form.html", pastebin=pastebin, form=form,

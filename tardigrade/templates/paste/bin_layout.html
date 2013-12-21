@@ -1,3 +1,8 @@
+
+<style>
+{{ style|safe }}
+</style>
+
 <div class="col-sm-12">
     <div class="row">
 
@@ -5,12 +10,11 @@
         <ul class="blog-info">
             <li><i class="fa fa-calendar"></i> {{ pastebin.date_created|time_format }}</li>
             <li><i class="fa fa-user"></i> <a href="{{ url_for('user.profile', username=pastebin.user.username) }}">{{ pastebin.user.username }}</a></li>
-
+            <li><i class="fa fa-globe"></i> This bin is public </li>
         </ul>
-
-        <div class="blog-content">
-            {{ pastebin.content }}<br />
-        </div>
-
+      
+        <!-- The "safe" keyword unescapes the HTML rendered by pygments -->
+        {{ bincontent|safe }}            
+        
     </div>
 </div>
