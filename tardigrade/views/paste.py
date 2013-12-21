@@ -11,7 +11,7 @@
 from flask import Blueprint, redirect, url_for, flash
 from flask.ext.login import login_required, current_user
 from pygments import highlight
-from pygments.lexers import PythonLexer
+from pygments.lexers import PythonLexer, CppLexer, JavaLexer, XmlLexer, HtmlLexer
 from pygments.formatters import HtmlFormatter
 
 from tardigrade.models.paste import Bin
@@ -34,7 +34,22 @@ def view_bin(bin_id, slug=None):
     form = None
 
     # User Pygments here to highlight syntax in HTML output
-    bincontent = highlight(pastebin.content, PythonLexer(), HtmlFormatter())
+    #Check which highlighting to user
+    #Python has no real "switch" :( so lets use a dictionary
+    # None is default
+    lexer = {
+        'Text':None,
+        'C++':CppLexer(),
+        'Java':JavaLexer(),
+        'HTML':HtmlLexer(),
+        'Python':PythonLexer(),
+        'XML':XmlLexer()
+    }.get(pastebin.lang, None)
+        
+    if (lexer):
+        bincontent = highlight(pastebin.content, lexer, HtmlFormatter())
+    else:
+        bincontent = "<pre> {} </pre>".format(pastebin.content)
 
     # The following sends the styleinfo to the template as well
     style = HtmlFormatter().get_style_defs('.highlight')

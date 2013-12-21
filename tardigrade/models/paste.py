@@ -21,7 +21,9 @@ class Bin(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     description = db.Column(db.String)
     content = db.Column(db.Text)
+    lang = db.Column(db.String)
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
+    is_public = db.Column(db.Boolean)
 
     @property
     def slug(self):

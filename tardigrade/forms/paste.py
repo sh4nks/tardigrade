@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from flask.ext.wtf import Form
-from wtforms import TextField, TextAreaField
+from wtforms import TextField, TextAreaField, SelectField, BooleanField
 from wtforms.validators import Required, Length
 from flask.ext.babel import lazy_gettext as _
 
@@ -23,6 +23,12 @@ class BinForm(Form):
 
     content = TextAreaField(_("Content"), validators=[
         Required(message=_("You can't create a pase-bin without content"))])
+
+    lang = SelectField(_("Highlighting (Programming Language)"), 
+        choices=[('Text', 'None (Plain Text)'), ('C++', 'C++'), ('HTML', 'HTML'), 
+                ('Java', 'Java'), ('Python', 'Python'), ('XML', 'XML')])
+
+    is_public = BooleanField(_("Public Bin"), default=False)
 
     def save(self, user):
         pastebin = Bin(**self.data)

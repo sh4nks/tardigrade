@@ -10,6 +10,7 @@
         <ul class="blog-info">
             <li><i class="fa fa-calendar"></i> {{ pastebin.date_created|time_format }}</li>
             <li><i class="fa fa-user"></i> <a href="{{ url_for('user.profile', username=pastebin.user.username) }}">{{ pastebin.user.username }}</a></li>
+            <li><i class="fa fa-code"></i> {{ pastebin.lang }}</li>
             <li><i class="fa fa-globe"></i> This bin is public </li>
         </ul>
       

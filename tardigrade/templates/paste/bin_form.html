@@ -11,10 +11,35 @@
     {{ form.hidden_tag() }}
 
     <h3>{% if mode == "edit" %}Edit{% else %}New{% endif %} Paste-Bin</h3>
+    
+    {{ render_field(form.description, div_class="col-sm-5") }}
+    <br />
 
-    {{ render_field(form.description, div_class="col-sm-6") }} <br />
-    {{ render_field(form.content, div_class="col-sm-7", rows=12) }}
+    <div class="form-group">
+        <div class="col-md-8">
+                Synax Highlighting (Markup/Programming Language)
+                {{ render_field(form.lang, div_class="col-sm-3") }}            
+        </div>
+    </div>
+    <br />
 
+    <div class="form-group">
+        <div class="col-md-8">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> {{ form.is_public }} </input>
+                </label>
+                <i class="fa fa-globe"></i>
+                Make this a public bin
+            </div>
+            
+        </div>
+    </div>
+
+    {{ render_field(form.content, div_class="col-sm-7", rows=12) }}    
+    
+
+    <br />
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
 {% endblock %}
