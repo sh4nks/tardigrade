@@ -1,4 +1,5 @@
 
+
 <style>
 {{ style|safe }}
 </style>
@@ -18,6 +19,12 @@
             <li><i class="fa fa-lock"></i> This bin is private </li>
             {% endif %}
         </ul>
+
+
+        <div>
+            You can reach this paste-bin via 
+            <pre> paste/bin/{{ pastebin.id }} </pre>
+        </div>
       
         <!-- The "safe" keyword unescapes the HTML rendered by pygments -->
         {{ bincontent|safe }}            

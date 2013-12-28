@@ -1,8 +1,10 @@
 {% set active_bin=True %}
 {% set page_title = pastebin.description %}
 
+
 {% extends theme("layout.html") %}
 {% block content %}
+    
     {% include "paste/bin_layout.html" %}
 
     {# TODO: Add filter for permissions checks #}
