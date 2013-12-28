@@ -1,5 +1,3 @@
-
-
 <style>
 {{ style|safe }}
 </style>
@@ -22,12 +20,12 @@
 
 
         <div>
-            You can reach this paste-bin via 
-            <pre> paste/bin/{{ pastebin.id }} </pre>
+            You can reach this paste-bin via
+            <pre>{{ request.url_root }}paste/bin/{{ pastebin.id }} </pre>
         </div>
-      
+
         <!-- The "safe" keyword unescapes the HTML rendered by pygments -->
-        {{ bincontent|safe }}            
-        
+        {{ bincontent|safe }}
+
     </div>
 </div>

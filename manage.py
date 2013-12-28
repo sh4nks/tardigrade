@@ -49,22 +49,22 @@ def initdb():
 def createall():
     """
     Creates the database with some example content
+    Attention: This will delete your whole database (if one exists)
     """
-    # Just for testing purposes
-    dbfile = os.path.join(DevelopmentConfig.basedir, "tardigrade.sqlite")
-    if os.path.exists(dbfile):
-        os.remove(dbfile)
+
+    # Be sure that there isn't a existing one.
+    db.drop_all()
 
     db.create_all()
 
     user1 = User(username="test1", password="test", email="test@example.org",
                  theme=current_app.config["DEFAULT_THEME"],
-                 language=current_app.config["BABEL_DEFAULT_LOCALE"])
+                 language=current_app.config["BABEL_DEFAULT_LOCALE"],
+                 is_admin=True)
     user1.save()
 
     user2 = User(username="test2", password="test", email="test2@example.org",
-                 theme="bootstrap2",
-                 language="de")
+                 theme="bootstrap2", language="de", is_admin=False)
 
     user2.save()
 

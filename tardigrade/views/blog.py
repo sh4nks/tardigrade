@@ -14,7 +14,7 @@ from flask.ext.babel import gettext as _
 
 from tardigrade.models.blog import Post, Comment
 from tardigrade.forms.blog import CommentForm, PostForm
-from tardigrade.helpers import render_template
+from tardigrade.helpers import render_template, can_modify
 
 # This will create a blueprint named `blog`
 # to make it available in other blueprints for example when you want to use
@@ -77,7 +77,7 @@ def edit_post(post_id, slug=None):
 
     # TODO: more permissions checks like admin, staff
     # check if the user has the right permissions to edit this post
-    if not post.user_id == current_user.id:
+    if not can_modify(post, current_user):
         flash(_("You are not allowed to delete this post."), "danger")
         return redirect(url_for("blog.index"))
 
@@ -103,7 +103,7 @@ def edit_post(post_id, slug=None):
 def delete_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
-    if not post.user_id == current_user.id:
+    if not can_modify(post, current_user):
         flash(_("You are not allowed to delete this post."), "danger")
         return redirect(url_for("blog.index"))
 
@@ -134,7 +134,7 @@ def new_comment(post_id):
 def edit_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
 
-    if not comment.user_id == current_user.id:
+    if not can_modify(comment, current_user):
         flash(_("You are not allowed to edit this comment"), "danger")
         return redirect(url_for("blog.view_post", post_id=comment.post.id,
                                 slug=comment.post.slug))
@@ -157,7 +157,7 @@ def edit_comment(comment_id):
 def delete_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
 
-    if not comment.user_id == current_user.id:
+    if not can_modify(comment, current_user):
         flash(_("You are not allowed to delete this post"), "danger")
         return redirect(url_for("blog.view_post", post_id=comment.post.id,
                                 slug=comment.post.slug))

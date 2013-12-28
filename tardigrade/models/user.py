@@ -30,6 +30,7 @@ class User(db.Model, UserMixin):
     lastseen = db.Column(db.DateTime, default=datetime.utcnow())
     language = db.Column(db.String)
     theme = db.Column(db.String)
+    is_admin = db.Column(db.Boolean, default=False, nullable=False)
 
     firstname = db.Column(db.String)
     lastname = db.Column(db.String)

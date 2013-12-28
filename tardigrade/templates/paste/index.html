@@ -1,12 +1,11 @@
 {% set active_blog=True %}
-{% set page_title = "Copy&Paste Bin" %}
+{% set page_title = "All Pastes" %}
 
 {% extends theme("layout.html") %}
 {% block content %}
 
 
-
-{% for pastebin in posts %}
+{% for pastebin in pastes %}
     {% include 'paste/bin_layout.html' %}
     {% if not loop.last %}<hr>{% endif %}
 {% endfor %}

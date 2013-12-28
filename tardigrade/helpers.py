@@ -16,6 +16,7 @@ from flask import session, current_app
 from flask.ext.themes2 import render_theme_template
 from flask.ext.login import current_user
 
+
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 
@@ -89,3 +90,22 @@ def time_delta_format(dt, default=None):
             return u'%d %s ago' % (period, plural)
 
     return default
+
+# Placed here, else it will throw an import error (tardigrade.models.blog)
+# fucking circular imports -.-
+from tardigrade.models.blog import Comment, Post
+from tardigrade.models.paste import Bin
+
+
+def can_modify(obj, user):
+    """
+    Checks if a user can edit/delete the given object.
+    The object needs to be either from instance `Bin`, `Comment` or `Post`
+    """
+    if not (isinstance(obj, Bin) or isinstance(obj, Comment) or
+            isinstance(obj, Post)):
+        raise TypeError("The object needs to be either from instance Bin, \
+            Comment or Post")
+    if obj.user_id == user.id or user.is_admin:
+        return True
+    return False

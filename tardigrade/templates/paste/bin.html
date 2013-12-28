@@ -4,16 +4,14 @@
 
 {% extends theme("layout.html") %}
 {% block content %}
-    
+
     {% include "paste/bin_layout.html" %}
 
-    {# TODO: Add filter for permissions checks #}
-    {% if current_user.is_authenticated() %}
+    {% if pastebin|can_modify(current_user) %}
     <br/>
     <a href="{{ url_for('paste.edit_bin', bin_id=pastebin.id) }}">Edit Post</a> |
     <a href="{{ url_for('paste.delete_bin', bin_id=pastebin.id) }}">Delete Post</a>
     {% endif %}
-
-    <hr>    
+    <hr>
 
 {% endblock %}
