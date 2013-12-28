@@ -1,9 +1,10 @@
-{% set active_blog=True %}
+{% set active_paste=True %}
 {% set page_title = "All Pastes" %}
 
 {% extends theme("layout.html") %}
 {% block content %}
 
+<a href="{{ url_for('paste.new_bin') }}">New Paste-Bin</a>
 
 {% for pastebin in pastes %}
     {% include 'paste/bin_layout.html' %}
