@@ -106,6 +106,8 @@ def can_modify(obj, user):
             isinstance(obj, Post)):
         raise TypeError("The object needs to be either from instance Bin, \
             Comment or Post")
+    if not user.is_authenticated():
+        return False
     if obj.user_id == user.id or user.is_admin:
         return True
     return False
