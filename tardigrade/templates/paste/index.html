@@ -4,7 +4,7 @@
 {% extends theme("layout.html") %}
 {% block content %}
 
-<a href="{{ url_for('paste.new_bin') }}">New Paste-Bin</a>
+<a class="btn btn-success" href="{{ url_for('paste.new_bin') }}">New Paste-Bin</a>
 
 {% for pastebin in pastes %}
     {% include 'paste/bin_layout.html' %}

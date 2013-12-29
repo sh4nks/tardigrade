@@ -1,5 +1,3 @@
-
-
 {% if mode == "edit" %}
     {% set page_title = "Edit Paste-Bin" %}
 {% else %}
@@ -8,42 +6,22 @@
 {% extends theme("layout.html") %}
 
 {% block content %}
-
-{%- from theme("macros.html") import render_field -%}
-<form class="form" role="form" method="post">
+{%- from theme("macros.html") import render_field, render_boolean_field -%}
+<form class="form-horizontal" role="form" method="post">
     {{ form.hidden_tag() }}
 
-    <h3>{% if mode == "edit" %}Edit{% else %}New{% endif %} Paste-Bin</h3>
-    
-    {{ render_field(form.description, div_class="col-sm-5") }}
-    <br />
+    <legend>{% if mode == "edit" %}Edit{% else %}New{% endif %} Paste-Bin</legend>
+
+    {{ render_field(form.description, div_class="col-md-4", label_class="") }}
+    {{ render_field(form.lang, div_class="col-md-4", label_class="") }}
+    {{ render_boolean_field(form.is_public, inline=True) }}
+    {{ render_field(form.content, rows=12, div_class="col-md-9", label_class="") }}
 
     <div class="form-group">
-        <div class="col-md-8">
-                Synax Highlighting (Markup/Programming Language)
-                {{ render_field(form.lang, div_class="col-sm-3") }}            
+        <div class="col-lg-offset-0 col-md-9">
+            <button type="submit" class="btn btn-success">Submit</button>
         </div>
     </div>
-    <br />
-
-    <div class="form-group">
-        <div class="col-md-8">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"> {{ form.is_public }} </input>
-                </label>
-                <i class="fa fa-globe"></i>
-                Make this a public bin
-            </div>
-            
-        </div>
-    </div>
-
-    {{ render_field(form.content, div_class="col-sm-7", rows=12) }}    
-    
-
-    <br />
-    <button type="submit" class="btn btn-success">Submit</button>
 </form>
 {% endblock %}
 

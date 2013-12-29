@@ -24,8 +24,8 @@ class BinForm(Form):
     content = TextAreaField(_("Content"), validators=[
         Required(message=_("You can't create a pase-bin without content"))])
 
-    lang = SelectField(_("Highlighting (Programming Language)"), 
-        choices=[('Text', 'None (Plain Text)'), ('C++', 'C++'), ('HTML', 'HTML'), 
+    lang = SelectField(_("Highlighting"),
+        choices=[('Text', 'None (Plain Text)'), ('C++', 'C++'), ('HTML', 'HTML'),
                 ('Java', 'Java'), ('Python', 'Python'), ('XML', 'XML')])
 
     is_public = BooleanField(_("Public Bin"), default=False)

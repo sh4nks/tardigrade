@@ -9,6 +9,8 @@
 
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
+        <!-- If no theme is available, it will fallback to the bootstrap default theme via the bootstrap cdn -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         {% block css %}
         {% endblock %}
     </head>
@@ -32,7 +34,7 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav">
                             {{ topnav(endpoint='blog.index', name='Blog', icon='fa fa-comment', active=active_blog) }}
-                            {{ topnav(endpoint='paste.index', name='Copy and Paste', icon='fa fa-edit') }}
+                            {{ topnav(endpoint='paste.index', name='Copy and Paste', icon='fa fa-edit', active=active_) }}
                         </ul>
 
                     {% if current_user and current_user.is_authenticated() %}
