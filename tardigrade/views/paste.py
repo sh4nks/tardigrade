@@ -30,6 +30,7 @@ def index():
 
 
 @paste.route("/bin/<int:bin_id>", methods=["POST", "GET"])
+@paste.route("/bin/<int:bin_id>-<slug>", methods=["POST", "GET"])
 def view_bin(bin_id, slug=None):
 
     pastebin = Bin.query.filter_by(id=bin_id).first()

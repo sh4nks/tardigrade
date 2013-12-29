@@ -21,7 +21,7 @@
 
         <div>
             You can reach this paste-bin via
-            <pre>{{ request.url_root }}paste/bin/{{ pastebin.id }} </pre>
+            <pre>{{ request.url_root }}paste/bin/{{ pastebin.id }}-{{ pastebin.slug }} </pre>
         </div>
 
         <!-- The "safe" keyword unescapes the HTML rendered by pygments -->
