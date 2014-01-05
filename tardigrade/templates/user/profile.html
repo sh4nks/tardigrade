@@ -31,21 +31,15 @@
         <h5>User has not revealed any details.</h5>
         {% endif %}
 
-        {% if user.email %}
-        <a href="#" class="btn btn-default btn-xs" role="button">
-            <span class="fa fa-envelope"></span> E-Mail
-        </a>
-        {% endif %}
-
         {% if user.website %}
-        <a href="#" class="btn btn-default btn-xs" role="button">
+        <a href="{{ user.website }}" class="btn btn-default btn-xs" role="button">
             <span class="fa fa-globe"></span> WWW
         </a>
         {% endif %}
 
         {% if user.birthday %}
         <span class="btn btn-default btn-xs" role="button">
-            <span class="fa fa-gift"></span> January 30, 1974
+            <span class="fa fa-gift"></span> {{ user.birthday|time_format("%B %d %Y") }}
         </span>
         {% endif %}
     </div>
