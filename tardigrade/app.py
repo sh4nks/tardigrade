@@ -12,7 +12,6 @@ import datetime
 
 from flask import Flask, request
 from flask.ext.login import current_user
-from flask_debugtoolbar import DebugToolbarExtension
 
 from tardigrade.models.user import User
 # import the bluepritns
@@ -20,7 +19,8 @@ from tardigrade.views.auth import auth
 from tardigrade.views.user import user
 from tardigrade.views.blog import blog
 from tardigrade.views.paste import paste
-from tardigrade.extensions import db, login_manager, mail, cache, babel, themes
+from tardigrade.extensions import (db, login_manager, mail, cache, babel,
+                                   themes, misaka, debugtoolbar)
 from tardigrade.helpers import (render_template, time_format, time_since,
                                 can_modify)
 
@@ -75,7 +75,10 @@ def configure_extensions(app):
     themes.init_themes(app, app_identifier="tardigrade")
 
     # Flask-Debugtoolbar
-    DebugToolbarExtension(app)
+    debugtoolbar.init_app(app)
+
+    # Flask-Misaka
+    misaka.init_app(app)
 
     # Flask-Login
     login_manager.login_view = app.config["LOGIN_VIEW"]

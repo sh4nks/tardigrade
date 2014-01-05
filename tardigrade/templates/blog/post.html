@@ -47,7 +47,7 @@
                         <li><i class="fa fa-calendar"></i> {{ comment.date_created|time_format }}</li>
                     </div>
 
-                    <p>{{ comment.content }}</p>
+                    <p>{{ comment.content|markdown }}</p>
                     <div class="moderation">
                     {% if comment|can_modify(current_user) %}
                         <br/>

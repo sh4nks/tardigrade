@@ -14,7 +14,8 @@ from flask.ext.mail import Mail
 from flask.ext.cache import Cache
 from flask.ext.babel import Babel
 from flask.ext.themes2 import Themes
-#from flask.ext.debugtoolbar import DebugToolbarExtension
+from flask.ext.misaka import Misaka
+from flask.ext.debugtoolbar import DebugToolbarExtension
 
 # Database
 db = SQLAlchemy()
@@ -34,6 +35,8 @@ babel = Babel()
 # Themes
 themes = Themes()
 
+# Markdown
+misaka = Misaka(strikethrough=True)
+
 # Debugtoolbar
-# The Debugtoolbar does not (atm) support the "factory" design
-#toolbar = DebugToolbarExtension()
+debugtoolbar = DebugToolbarExtension()
