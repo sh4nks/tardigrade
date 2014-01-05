@@ -105,7 +105,7 @@ def change_user_details():
         form.populate_obj(current_user)
         current_user.save()
 
-        flash(_("Your details have been updated!", "success"))
+        flash(_("Your details have been updated!"), "success")
         return redirect(url_for("user.change_user_details"))
     else:
         form.birthday.data = current_user.birthday
@@ -115,5 +115,6 @@ def change_user_details():
         form.location.data = current_user.location
         form.website.data = current_user.website
         form.avatar.data = current_user.avatar
+        form.about_me.data = current_user.about_me
 
     return render_template("user/change_user_details.html", form=form)

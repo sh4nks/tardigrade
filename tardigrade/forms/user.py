@@ -65,7 +65,7 @@ class ChangePasswordForm(Form):
 
 
 class ChangeUserDetailsForm(Form):
-    birthday = DateField(_("Your Birthday"), format="%d %m %Y", validators=[
+    birthday = DateField(_("Your Birthday"), format="%d.%m.%Y", validators=[
         Optional()])
 
     gender = SelectField(_("Gender"), default="None", choices=[
