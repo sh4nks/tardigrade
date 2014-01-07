@@ -8,7 +8,7 @@
     :copyright: (c) 2013 by the Tardigrade Team.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Blueprint, redirect, url_for, flash
+from flask import Blueprint, redirect, url_for, flash, abort
 from flask.ext.login import login_required, current_user
 from flask.ext.babel import gettext as _
 
@@ -34,6 +34,10 @@ def index():
 @blog.route("/post/<int:post_id>-<slug>", methods=["POST", "GET"])
 def view_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
+
+    # abort if no post is found
+    if not post:
+        abort(404)
 
     # if you do not initialize the form, it will raise an error when user is
     # not registered
@@ -75,7 +79,10 @@ def new_post():
 def edit_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
-    # TODO: more permissions checks like admin, staff
+    # abort if no post is found
+    if not post:
+        abort(404)
+
     # check if the user has the right permissions to edit this post
     if not can_modify(post, current_user):
         flash(_("You are not allowed to delete this post."), "danger")
@@ -103,6 +110,9 @@ def edit_post(post_id, slug=None):
 def delete_post(post_id, slug=None):
     post = Post.query.filter_by(id=post_id).first()
 
+    if not post:
+        abort(404)
+
     if not can_modify(post, current_user):
         flash(_("You are not allowed to delete this post."), "danger")
         return redirect(url_for("blog.index"))
@@ -117,6 +127,9 @@ def delete_post(post_id, slug=None):
 @login_required
 def new_comment(post_id):
     post = Post.query.filter_by(id=post_id).first()
+
+    if not post:
+        abort(404)
 
     form = CommentForm()
     if form.validate_on_submit():
@@ -133,6 +146,9 @@ def new_comment(post_id):
 @login_required
 def edit_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
+
+    if not comment:
+        abort(404)
 
     if not can_modify(comment, current_user):
         flash(_("You are not allowed to edit this comment"), "danger")
@@ -156,6 +172,9 @@ def edit_comment(comment_id):
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
+
+    if not comment:
+        abort(404)
 
     if not can_modify(comment, current_user):
         flash(_("You are not allowed to delete this post"), "danger")

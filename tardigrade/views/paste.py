@@ -8,7 +8,7 @@
     :copyright: (c) 2013 by the Tardigrade Team.
     :license: BSD, see LICENSE for more details.
 """
-from flask import Blueprint, redirect, url_for, flash
+from flask import Blueprint, redirect, url_for, flash, abort
 from flask.ext.login import login_required, current_user
 from flask.ext.babel import gettext as _
 
@@ -29,6 +29,9 @@ def index():
 @paste.route("/bin/<int:bin_id>-<slug>", methods=["POST", "GET"])
 def view_bin(bin_id, slug=None):
     pastebin = Bin.query.filter_by(id=bin_id).first()
+
+    if not pastebin:
+        abort(404)
 
     #Check if post is private and send user to login
     #if yes and user not logged in
@@ -58,6 +61,9 @@ def new_bin():
 def edit_bin(bin_id, slug=None):
     pastebin = Bin.query.filter_by(id=bin_id).first()
 
+    if not pastebin:
+        abort(404)
+
     #Edit is more or less the same as creating a new one
     #You can not actually overwrite the existing one
     #You can just generate a new edited copy of it
@@ -83,6 +89,9 @@ def edit_bin(bin_id, slug=None):
 @login_required
 def delete_bin(bin_id, slug=None):
     pastebin = Bin.query.filter_by(id=bin_id).first()
+
+    if not pastebin:
+        abort(404)
 
     if not can_modify(pastebin, current_user):
         flash(_("You are not allowed to delete this Paste-Bin."), "danger")
