@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tardigrade 0.1-dev\n"
 "Report-Msgid-Bugs-To: sh4nks7@gmail.com\n"
-"POT-Creation-Date: 2013-12-29 16:26+0100\n"
-"PO-Revision-Date: 2013-12-29 16:33+0100\n"
+"POT-Creation-Date: 2014-01-07 20:37+0100\n"
+"PO-Revision-Date: 2014-01-07 20:38+0100\n"
 "Last-Translator: sh4nks <sh4nks7@gmail.com>\n"
 "Language-Team: Tardigrade Team\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgid "You must provide an email adress or username"
 msgstr "Es ist eine E-Mail adresse oder ein Benutzername erforderlich"
 
 #: tardigrade/forms/auth.py:30 tardigrade/forms/auth.py:45
-#: tardigrade/forms/auth.py:77 tardigrade/forms/auth.py:93
+#: tardigrade/forms/auth.py:80 tardigrade/forms/auth.py:96
 msgid "Password"
 msgstr "Passwort"
 
@@ -75,7 +75,7 @@ msgstr "Bestätige Passwort"
 msgid "Confirm Password required"
 msgstr "Bestätigung des Passworts ist erforderlich"
 
-#: tardigrade/forms/auth.py:50 tardigrade/forms/auth.py:98
+#: tardigrade/forms/auth.py:50 tardigrade/forms/auth.py:101
 #: tardigrade/forms/user.py:64
 msgid "Passwords do not match"
 msgstr "Die Passwörter stimmen nicht überein"
@@ -88,27 +88,31 @@ msgstr "Akzeptiere die AGBs"
 msgid "You have to accept the Terms of Service"
 msgstr "Akzeptiere die AGBs"
 
-#: tardigrade/forms/auth.py:59
+#: tardigrade/forms/auth.py:56
+msgid "Captcha"
+msgstr "Captcha"
+
+#: tardigrade/forms/auth.py:62
 msgid "This username is already taken"
 msgstr "Dieser Benutzername ist bereits vergeben."
 
-#: tardigrade/forms/auth.py:64
+#: tardigrade/forms/auth.py:67
 msgid "This e-Mail is already taken"
 msgstr "Diese E-Mail Adresse ist schon registriert."
 
-#: tardigrade/forms/auth.py:81 tardigrade/forms/auth.py:89
+#: tardigrade/forms/auth.py:84 tardigrade/forms/auth.py:92
 msgid "Email"
 msgstr "E-Mail"
 
-#: tardigrade/forms/auth.py:82
+#: tardigrade/forms/auth.py:85
 msgid "Email reguired"
 msgstr "E-Mail Adresse erforderlich"
 
-#: tardigrade/forms/auth.py:96
+#: tardigrade/forms/auth.py:99
 msgid "Confirm password"
 msgstr "Passwort bestätigen"
 
-#: tardigrade/forms/auth.py:103
+#: tardigrade/forms/auth.py:106
 msgid "Wrong e-Mail address."
 msgstr "Falsche E-Mail Adresse."
 
@@ -120,7 +124,7 @@ msgstr "Titel"
 msgid "A title is required"
 msgstr "Ein Titel ist erforderlich"
 
-#: tardigrade/forms/blog.py:24 tardigrade/forms/paste.py:24
+#: tardigrade/forms/blog.py:24 tardigrade/forms/paste.py:26
 msgid "Content"
 msgstr "Inhalt"
 
@@ -136,23 +140,23 @@ msgstr "Kommentar"
 msgid "You can't submit a comment without content"
 msgstr "Du kannst kein Kommentar ohne Inhalt absenden."
 
-#: tardigrade/forms/paste.py:20
+#: tardigrade/forms/paste.py:22
 msgid "Description"
 msgstr "Beschreibung"
 
-#: tardigrade/forms/paste.py:21
+#: tardigrade/forms/paste.py:23
 msgid "Please enter a short discription/title for your paste-bin!"
 msgstr "Bitte gebe ein kurze Beschreibung/Titel für deinen Paste ein."
 
-#: tardigrade/forms/paste.py:25
+#: tardigrade/forms/paste.py:27
 msgid "You can't create a pase-bin without content"
 msgstr "Du kannst keinen Paste ohne Inhalt absenden."
 
-#: tardigrade/forms/paste.py:27
+#: tardigrade/forms/paste.py:29
 msgid "Highlighting"
 msgstr "Highlighting"
 
-#: tardigrade/forms/paste.py:31
+#: tardigrade/forms/paste.py:33
 msgid "Public Bin"
 msgstr "Öffentlicher Paste"
 
@@ -277,47 +281,47 @@ msgstr "Dein Passwort Token ist abgelaufen."
 msgid "Your password has been updated."
 msgstr "Dein Passwort wurde aktualisiert."
 
-#: tardigrade/views/blog.py:50 tardigrade/views/blog.py:124
+#: tardigrade/views/blog.py:54 tardigrade/views/blog.py:137
 msgid "Your comment has been saved!"
 msgstr "Dein Kommentar wurde gespeichert."
 
-#: tardigrade/views/blog.py:66
+#: tardigrade/views/blog.py:70
 msgid "Your post has been saved!"
 msgstr "Dein Post wurde gespeichert."
 
-#: tardigrade/views/blog.py:81 tardigrade/views/blog.py:107
+#: tardigrade/views/blog.py:88 tardigrade/views/blog.py:117
 msgid "You are not allowed to delete this post."
 msgstr "Du hast keine Berechtigungen um diesen Post zu löschen."
 
-#: tardigrade/views/blog.py:89
+#: tardigrade/views/blog.py:96
 msgid "This post has been edited"
 msgstr "Dieser Post wurde erfolgreich editiert."
 
-#: tardigrade/views/blog.py:111
+#: tardigrade/views/blog.py:121
 msgid "This post has been deleted"
 msgstr "Dieser Post wurde gelöscht"
 
-#: tardigrade/views/blog.py:138
+#: tardigrade/views/blog.py:154
 msgid "You are not allowed to edit this comment"
 msgstr "Du hast keine Berechtigungen um dieses Kommentar zu bearbeiten."
 
-#: tardigrade/views/blog.py:146 tardigrade/views/blog.py:166
+#: tardigrade/views/blog.py:162 tardigrade/views/blog.py:185
 msgid "Your comment has been edited."
 msgstr "Dein Kommentar wurde erfolgreich editiert."
 
-#: tardigrade/views/blog.py:161
+#: tardigrade/views/blog.py:180
 msgid "You are not allowed to delete this post"
 msgstr "Du hast keine Berechtigungen um diesen Post zu löschen."
 
-#: tardigrade/views/paste.py:76 tardigrade/views/paste.py:97
+#: tardigrade/views/paste.py:51 tardigrade/views/paste.py:76
 msgid "Your paste-bin has been saved!"
 msgstr "Dein Paste wurde gespeichert."
 
-#: tardigrade/views/paste.py:114
+#: tardigrade/views/paste.py:97
 msgid "You are not allowed to delete this Paste-Bin."
 msgstr "Du hast keine Berechtigungen um diesen Paste zu löschen."
 
-#: tardigrade/views/paste.py:118
+#: tardigrade/views/paste.py:101
 msgid "This bin has been deleted"
 msgstr "Dieser Paste wurde gelöscht"
 
@@ -336,4 +340,3 @@ msgstr "Dein Passwort wurde aktualisiert."
 #: tardigrade/views/user.py:108
 msgid "Your details have been updated!"
 msgstr "Deine Details wurden aktualisiert."
-
