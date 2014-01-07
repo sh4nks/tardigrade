@@ -10,7 +10,6 @@ These are the requirements our product has to fulfill:
 * authentication and registration with double opt-in
 * no passwords stored as plain text
 * user input validation
-
 * i18n (optional)
 
 ## DEPENDENCIES
@@ -23,14 +22,16 @@ These are the requirements our product has to fulfill:
 * [Flask-Cache](http://pythonhosted.org/Flask-Cache/)
 * [Flask-Mail](http://pythonhosted.org/flask-mail/)
 * [Flask-Script](http://flask-script.readthedocs.org/en/latest/)
-* [Pygments](http://pygments.org) 
+* [Pygments](http://pygments.org)
 
 
 ## INSTALLATION
 
 * Create a virtualenv
 * Install the dependencies with `pip install -r requirements.txt`
-* Copy `tardigrade/settings.py.example` to `tardigrade/settings.py`
+* Configuration (_adjust them accordingly to your needs_)
+    * For development copy `tardigrade/development.py.example` to `tardigrade/development.py`
+    * For production copy `tardigrade/production.py.example` to `tardigrade/production.py`
 * Create the database with some example content `python manage.py createall`
 * Run the development server `python manage.py runserver`
 * Visit [localhost:8080](http://localhost:8080)
