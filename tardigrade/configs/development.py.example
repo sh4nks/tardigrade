@@ -1,0 +1,40 @@
+from tardigrade.configs.default import DefaultConfig
+
+
+class DevelopmentConfig(DefaultConfig):
+    PROJECT = "tardigrade"
+    # Indicates that it is a dev environment
+    DEBUG = True
+
+    # Now SQLAlchemy will print all the queries in the console
+    SQLALCHEMY_ECHO = True
+
+    # Recaptcha
+    # This captcha key only works for "localhost"
+    # To get a recaptcha key, visit the link below:
+    # https://www.google.com/recaptcha/admin/create
+    RECAPTCHA_USE_SSL = False
+    RECAPTCHA_PUBLIC_KEY = "6LfTs-wSAAAAANpjQ5njcOh1j2TqkdgX_ceJOYtq"
+    RECAPTCHA_PRIVATE_KEY = "6LfTs-wSAAAAAMAsJcUKQR6XHFaOp3XTx3lTnlFs"
+    RECAPTCHA_OPTIONS = {"theme": "white"}
+
+    ## Mail
+    MAIL_SERVER = "localhost"
+    MAIL_PORT = 25
+    MAIL_USE_SSL = False
+    MAIL_USE_TLS = False
+    MAIL_USERNAME = "noreply@example.org"
+    MAIL_PASSWORD = ""
+    MAIL_DEFAULT_SENDER = ("Default Sender", "noreply@example.org")
+    ADMINS = ["admin@example.org"]
+
+    # Language
+    BABEL_DEFAULT_LOCALE = 'en'
+    AVAILABLE_LANGUAGES = {"en": "English", "de": "German"}
+
+    # The default theme
+    DEFAULT_THEME = "tardigrade"
+
+    # Pastebin settings
+    LINE_NUMBERS = False
+    CSS_CLASS = "codehilite"  # If you change this, you'll also need to change the css variable
