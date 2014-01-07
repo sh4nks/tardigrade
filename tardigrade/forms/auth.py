@@ -10,7 +10,7 @@
 """
 from datetime import datetime
 
-from flask.ext.wtf import Form
+from flask.ext.wtf import Form, RecaptchaField
 from wtforms import TextField, PasswordField, BooleanField, HiddenField
 from wtforms.validators import (Required, Email, EqualTo, regexp,
                                 ValidationError, Length)
@@ -52,6 +52,9 @@ class RegisterForm(Form):
     accept_tos = BooleanField(
         _("Accept Terms of Service"), default=False, validators=[
         Required(message=_("You have to accept the Terms of Service"))])
+
+    recaptcha = RecaptchaField(_("Captcha"), validators=[
+        Required(message="Captcha required")])
 
     def validate_username(self, field):
         user = User.query.filter_by(username=field.data).first()
