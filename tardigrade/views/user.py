@@ -26,15 +26,15 @@ user = Blueprint("user", __name__)
 @user.route("/<username>")
 def profile(username):
     user = User.query.filter_by(username=username).first()
+
+    # if no user is found, abort with a 404 page
     if not user:
         abort(404)
-    return render_template("user/profile.html", user=user)
 
+    # only show public pastes in the profile
+    pastes = user.pastes.filter_by(is_public=True)
 
-@user.route("/<username>/blog")
-def userblog(username):
-    user = User.query.filter_by(username=username).first()
-    return render_template("user/blog.html", posts=user.posts)
+    return render_template("user/profile.html", user=user, pastes=pastes)
 
 
 @user.route("/settings/")
