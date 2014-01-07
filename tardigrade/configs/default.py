@@ -64,7 +64,13 @@ class DefaultConfig(object):
     MAIL_DEFAULT_SENDER = ("Default Sender", "noreply@example.org")
     ADMINS = ["admin@example.org"]
 
+    # Language
     BABEL_DEFAULT_LOCALE = 'en'
     AVAILABLE_LANGUAGES = {"en": "English", "de": "German"}
 
+    # The default theme
     DEFAULT_THEME = "tardigrade"
+
+    # Pastebin settings
+    LINE_NUMBERS = False
+    CSS_CLASS = "codehilite"  # If you change this, you'll also need to change the css variable

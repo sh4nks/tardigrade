@@ -11,10 +11,6 @@
 from flask import Blueprint, redirect, url_for, flash
 from flask.ext.login import login_required, current_user
 from flask.ext.babel import gettext as _
-from pygments import highlight
-from pygments.lexers import (PythonLexer, CppLexer, JavaLexer, XmlLexer,
-                             HtmlLexer)
-from pygments.formatters import HtmlFormatter
 
 from tardigrade.models.paste import Bin
 from tardigrade.forms.paste import BinForm
@@ -32,39 +28,14 @@ def index():
 @paste.route("/bin/<int:bin_id>", methods=["POST", "GET"])
 @paste.route("/bin/<int:bin_id>-<slug>", methods=["POST", "GET"])
 def view_bin(bin_id, slug=None):
-
     pastebin = Bin.query.filter_by(id=bin_id).first()
-    form = None
-
-    # User Pygments here to highlight syntax in HTML output
-    #Check which highlighting to user
-    #Python has no real "switch" :( so lets use a dictionary
-    # None is default
-    lexer = {
-        'Text': None,
-        'C++': CppLexer(),
-        'Java': JavaLexer(),
-        'HTML': HtmlLexer(),
-        'Python': PythonLexer(),
-        'XML': XmlLexer()
-    }.get(pastebin.lang, None)
-
-    if lexer:
-        bincontent = highlight(pastebin.content, lexer, HtmlFormatter())
-    else:
-        bincontent = "<pre> {} </pre>".format(pastebin.content)
-
-    # The following sends the styleinfo to the template as well
-    style = HtmlFormatter().get_style_defs('.highlight')
 
     #Check if post is private and send user to login
     #if yes and user not logged in
     if not pastebin.is_public and not current_user.is_authenticated():
         return redirect(url_for("auth.login"))
 
-    else:
-        return render_template("paste/bin.html", pastebin=pastebin, form=form,
-                               style=style, bincontent=bincontent)
+    return render_template("paste/bin.html", pastebin=pastebin)
 
 
 @paste.route("/bin/new", methods=["POST", "GET"])
@@ -75,7 +46,8 @@ def new_bin():
     if form.validate_on_submit():
         pastebin = form.save(current_user)
         flash(_("Your paste-bin has been saved!"), "success")
-        return redirect(url_for("paste.view_bin", bin_id=pastebin.id))
+        return redirect(url_for("paste.view_bin", bin_id=pastebin.id,
+                                slug=pastebin.slug))
 
     return render_template("paste/bin_form.html", form=form, mode="new")
 
@@ -96,7 +68,8 @@ def edit_bin(bin_id, slug=None):
     if form.validate_on_submit():
         pastebin = form.save(current_user)
         flash(_("Your paste-bin has been saved!"), "success")
-        return redirect(url_for("paste.view_bin", bin_id=pastebin.id))
+        return redirect(url_for("paste.view_bin", bin_id=pastebin.id,
+                                slug=pastebin.slug))
     else:
         form.description.data = "{}*".format(pastebin.description)
         form.content.data = pastebin.content

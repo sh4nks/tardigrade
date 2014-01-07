@@ -12,7 +12,11 @@ import re
 from datetime import datetime
 from unicodedata import normalize
 
-from flask import session, current_app
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name, ClassNotFound
+from pygments.formatters import HtmlFormatter
+
+from flask import session, current_app, escape
 from flask.ext.themes2 import render_theme_template
 from flask.ext.login import current_user
 
@@ -30,6 +34,20 @@ def render_template(template, **context):
     else:
         theme = session.get('theme', current_app.config['DEFAULT_THEME'])
     return render_theme_template(theme, template, **context)
+
+
+def highlighter(content, language=None):
+    try:
+        lexer = get_lexer_by_name(language.lower(), stripall=True)
+    except ClassNotFound:
+        content = escape(content)
+        return "<pre> %s </pre>" % content
+
+    formatter = HtmlFormatter(linenos=current_app.config['LINE_NUMBERS'],
+                              cssclass=current_app.config['CSS_CLASS'])
+    content = highlight(content, lexer, formatter)
+    content = content.strip()
+    return content
 
 
 def slugify(text, delim=u'-'):

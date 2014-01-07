@@ -22,7 +22,7 @@ from tardigrade.views.paste import paste
 from tardigrade.extensions import (db, login_manager, mail, cache, babel,
                                    themes, misaka, debugtoolbar)
 from tardigrade.helpers import (render_template, time_format, time_since,
-                                can_modify)
+                                can_modify, highlighter)
 
 
 DEFAULT_BLUEPRINTS = (
@@ -121,6 +121,7 @@ def configure_template_filters(app):
     """
     Configures the template filters
     """
+    app.jinja_env.filters['highlighter'] = highlighter
     app.jinja_env.filters['time_format'] = time_format
     app.jinja_env.filters['time_since'] = time_since
     app.jinja_env.filters['can_modify'] = can_modify

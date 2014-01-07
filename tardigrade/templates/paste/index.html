@@ -2,6 +2,12 @@
 {% set page_title = "All Pastes" %}
 
 {% extends theme("layout.html") %}
+
+{% block css %}
+{{ super() }}
+<link rel=stylesheet href="{{ url_for('static', filename='css/pygments.css') }}">
+{% endblock %}
+
 {% block content %}
 
 {% for pastebin in pastes %}

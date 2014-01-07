@@ -8,6 +8,8 @@
     :copyright: (c) 2013 by the Tardigrade Team.
     :license: BSD, see LICENSE for more details.
 """
+
+from pygments.lexers import get_all_lexers
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SelectField, BooleanField
 from wtforms.validators import Required, Length
@@ -25,12 +27,11 @@ class BinForm(Form):
         Required(message=_("You can't create a pase-bin without content"))])
 
     lang = SelectField(_("Highlighting"),
-        choices=[('Text', 'None (Plain Text)'), ('C++', 'C++'), ('HTML', 'HTML'),
-                ('Java', 'Java'), ('Python', 'Python'), ('XML', 'XML')])
+                       choices=[(lexer[1][0], lexer[0])
+                                for lexer in get_all_lexers()])
 
     is_public = BooleanField(_("Public Bin"), default=False)
 
     def save(self, user):
         pastebin = Bin(**self.data)
         return pastebin.save(user=user)
-

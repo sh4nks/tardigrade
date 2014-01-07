@@ -1,8 +1,13 @@
 {% set active_paste=True %}
 {% set page_title = pastebin.description %}
 
-
 {% extends theme("layout.html") %}
+
+{% block css %}
+{{ super() }}
+<link rel=stylesheet href="{{ url_for('static', filename='css/pygments.css') }}">
+{% endblock %}
+
 {% block content %}
 
     {% include "paste/bin_layout.html" %}
