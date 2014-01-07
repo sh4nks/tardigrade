@@ -1,7 +1,17 @@
 # INTRODUCTION
 
-coming soon!
+Tardigrade is a tiny content-management environment.
 
+We developed it as a project for a course at our university.
+These are the requirements our product has to fulfill:
+
+* persistent data
+* XML or JSON web services for AJAX
+* authentication and registration with double opt-in
+* no passwords stored as plain text
+* user input validation
+
+* i18n (optional)
 
 ## DEPENDENCIES
 
