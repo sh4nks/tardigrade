@@ -6,11 +6,19 @@
     <div class="col-sm-3">
         <div class="sidebar">
             <ul class="nav sidenav">
-                <li class="nav-header">Account Settings</li>
-                {{ navlink('user.change_other', 'Misc Settings') }}
-                {{ navlink('user.change_user_details', 'Change User Details') }}
-                {{ navlink('user.change_email', 'Change E-Mail Address') }}
-                {{ navlink('user.change_password', 'Change Password') }}
+                <li class="nav-header">{% trans %}Account Settings{% endtrans %}</li>
+                <li {% if 'user.change_other' == request.endpoint %}class="active"{% endif %}>
+                    <a href="{{ url_for('user.change_other') }}">{% trans %}Settings{% endtrans %}</a>
+                </li>
+                <li {% if 'user.change_user_details' == request.endpoint %}class="active"{% endif %}>
+                    <a href="{{ url_for('user.change_user_details') }}">{% trans %}Change User Details{% endtrans %}</a>
+                </li>
+                <li {% if 'user.change_email' == request.endpoint %}class="active"{% endif %}>
+                    <a href="{{ url_for('user.change_email') }}">{% trans %}Change E-Mail Address{% endtrans %}</a>
+                </li>
+                <li {% if 'user.change_password' == request.endpoint %}class="active"{% endif %}>
+                    <a href="{{ url_for('user.change_email') }}">{% trans %}Change Password{% endtrans %}</a>
+                </li>
             </ul>
         </div> <!--/.sidebar -->
     </div><!--/.col-sm-3 -->

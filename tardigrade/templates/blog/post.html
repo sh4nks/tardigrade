@@ -7,8 +7,8 @@
 
     {% if post|can_modify(current_user) %}
     <br/>
-    <a href="{{ url_for('blog.edit_post', post_id=post.id) }}">Edit Post</a> |
-    <a href="{{ url_for('blog.delete_post', post_id=post.id) }}">Delete Post</a>
+    <a href="{{ url_for('blog.edit_post', post_id=post.id) }}">{% trans %}Edit Post{% endtrans %}</a> |
+    <a href="{{ url_for('blog.delete_post', post_id=post.id) }}">{% trans %}Delete Post{% endtrans %}</a>
     {% endif %}
 
     <hr>
@@ -27,7 +27,7 @@
 
                     {{ render_field(form.content, rows=3) }}
 
-                    <button type="submit" class="btn btn-default">Submit!</button>
+                    <button type="submit" class="btn btn-default">{% trans %}Submit{% endtrans %}</button>
                 </form>
             </div>
 
@@ -51,8 +51,8 @@
                     <div class="moderation">
                     {% if comment|can_modify(current_user) %}
                         <br/>
-                        <a href="{{ url_for('blog.edit_comment', comment_id=comment.id) }}">Edit Comment</a> |
-                        <a href="{{ url_for('blog.delete_comment', comment_id=comment.id) }}">Delete Comment</a>
+                        <a href="{{ url_for('blog.edit_comment', comment_id=comment.id) }}">{% trans %}Edit Comment{% endtrans %}</a> |
+                        <a href="{{ url_for('blog.delete_comment', comment_id=comment.id) }}">{% trans %}Delete Comment{% endtrans %}</a>
                     {% endif %}
                     </div>
                 </div>

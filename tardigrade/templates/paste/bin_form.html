@@ -11,7 +11,7 @@
 <form class="form-horizontal" role="form" method="post">
     {{ form.hidden_tag() }}
 
-    <legend>{% if mode == "edit" %}Edit{% else %}New{% endif %} Paste-Bin</legend>
+    <legend>{% if mode == "edit" %}{% trans %}Edit{% endtrans %}{% else %}{% trans %}New{% endtrans %}{% endif %} {% trans %}Paste{% endtrans %}</legend>
 
     {{ render_field(form.description, div_class="col-md-4", label_class="") }}
     {{ render_field(form.lang, div_class="col-md-4", label_class="") }}
@@ -20,7 +20,7 @@
 
     <div class="form-group">
         <div class="col-lg-offset-0 col-md-9">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success">{% trans %}Submit{% endtrans %}</button>
         </div>
     </div>
 </form>

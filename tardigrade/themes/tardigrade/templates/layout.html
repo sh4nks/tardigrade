@@ -48,26 +48,26 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 {% if current_user.is_admin %}
-                                <li><a href="{{ url_for('paste.new_bin') }}"><span class="fa fa-edit"></span> New Paste</a></li>
-                                <li><a href="{{ url_for('blog.new_post') }}"><span class="fa fa-comment"></span> New Post</a></li>
+                                <li><a href="{{ url_for('paste.new_bin') }}"><span class="fa fa-edit"></span> {% trans %}New Paste{% endtrans %}</a></li>
+                                <li><a href="{{ url_for('blog.new_post') }}"><span class="fa fa-comment"></span> {% trans %}New Post{% endtrans %}</a></li>
                                 <li class="divider"></li>
                                 {% endif %}
-                                <li><a href="{{ url_for('user.settings') }}"><span class="fa fa-cogs"></span> Settings</a></li>
+                                <li><a href="{{ url_for('user.settings') }}"><span class="fa fa-cogs"></span> {% trans %}Settings{% endtrans %}</a></li>
 
-                                <li><a href="{{ url_for('auth.logout') }}"><span class="fa fa-power-off"></span> Logout</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}"><span class="fa fa-power-off"></span> {% trans %}Logout{% endtrans %}</a></li>
                             </ul>
                         </div>
                     {% else %}
                         <div class="btn-group navbar-btn navbar-right">
                             <a class="btn btn-primary" href="{{ url_for('auth.login') }}">
-                                <span class="fa fa-user"></span> Login
+                                <span class="fa fa-user"></span> {% trans %}Login{% endtrans %}
                             </a>
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                                <li><a href="{{ url_for('auth.forgot_password') }}">Reset Password</a></li>
+                                <li><a href="{{ url_for('auth.register') }}">{% trans %}Register{% endtrans %}</a></li>
+                                <li><a href="{{ url_for('auth.forgot_password') }}">{% trans %}Reset Password{% endtrans %}</a></li>
                             </ul>
                         </div>
                     {% endif %}
@@ -79,7 +79,7 @@
                     </div><!-- nav-collapse -->
                 </div><!-- container -->
             </nav> <!-- navbar navbar-inverse -->
-            {% endblock %}
+        {% endblock %}
 
 
             <div class="container">

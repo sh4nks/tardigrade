@@ -5,7 +5,7 @@
 
 {% block content %}
 <form class="form-horizontal" role="form" method="POST">
-    <h2>Login</h2>
+    <h2>{% trans %}Login{% endtrans %}</h2>
     <hr>
     {{ form.hidden_tag() }}
     {{ horizontal_field(form.login)}}
@@ -15,7 +15,7 @@
         <div class="col-md-offset-3 col-md-9">
             <div class="checkbox">
                 <label>
-                    {{ form.remember_me }} Remember Me
+                    {{ form.remember_me }} {% trans %}Remember Me{% endtrans %}
                 </label>
             </div>
         </div>
@@ -23,7 +23,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-3 col-md-9">
-            <button type="submit" class="btn btn-success col-md-3 col-xs-8">Login</button>
+            <button type="submit" class="btn btn-success col-md-3 col-xs-8">{% trans %}Login{% endtrans %}</button>
         </div>
     </div>
 </form>

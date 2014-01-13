@@ -14,8 +14,8 @@
 
     {% if pastebin|can_modify(current_user) %}
     <br/>
-    <a href="{{ url_for('paste.edit_bin', bin_id=pastebin.id) }}">Edit Bin</a> |
-    <a href="{{ url_for('paste.delete_bin', bin_id=pastebin.id) }}">Delete Bin</a>
+    <a href="{{ url_for('paste.edit_bin', bin_id=pastebin.id) }}">{% trans %}Edit Bin{% endtrans %}</a> |
+    <a href="{{ url_for('paste.delete_bin', bin_id=pastebin.id) }}">{% trans %}Delete Bin{% endtrans %}</a>
     {% endif %}
     <hr>
 

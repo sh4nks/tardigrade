@@ -12,10 +12,10 @@
 <form class="form" role="form" method="post">
     {{ form.hidden_tag() }}
 
-    <h3>{% if mode == "edit" %}Edit{% else %}New{% endif %} Comment</h3>
+    <h3>{% if mode == "edit" %}{% trans %}Edit{% endtrans %}{% else %}{% trans %}New{% endtrans %}{% endif %} Comment</h3>
 
     {{ render_field(form.content, div_class="col-sm-12", rows=12) }}
 
-    <button type="submit" class="btn btn-success">Submit!</button>
+    <button type="submit" class="btn btn-success">{% trans %}Submit{% endtrans %}</button>
 </form>
 {% endblock %}

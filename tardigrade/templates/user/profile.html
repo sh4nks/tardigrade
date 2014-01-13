@@ -33,7 +33,7 @@
         {% if user.about_me %}
         <h5>{{ user.about_me }}</h5>
         {% else %}
-        <h5>User has not revealed any details.</h5>
+        <h5>{% trans %}User has not revealed any details.{% endtrans %}</h5>
         {% endif %}
 
         {% if user.website %}
@@ -51,8 +51,8 @@
 </div>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#posts" data-toggle="tab">Posts</a></li>
-        <li><a href="#pastes" data-toggle="tab">Pastes</a></li>
+        <li class="active"><a href="#posts" data-toggle="tab">{% trans %}Posts{% endtrans %}</a></li>
+        <li><a href="#pastes" data-toggle="tab">{% trans %}Pastes{% endtrans %}</a></li>
     </ul>
     <div class="tab-content">
         <!-- Posts -->
@@ -71,7 +71,7 @@
                 </div>
                 {% endfor %}
             {% else %}
-            <p>No posts.</p>
+            <p>{% trans %}No posts.{% endtrans %}</p>
             {% endif %}
         </div>
 
@@ -84,7 +84,7 @@
                         <li><i class="fa fa-calendar"></i> {{ paste.date_created|time_format }}</li>
                         <li><i class="fa fa-user"></i> <a href="{{ url_for('user.profile', username=paste.user.username) }}">{{ paste.user.username }}</a></li>
                         <li><i class="fa fa-code"></i> {{ paste.lang }}</li>
-                        <li><i class="fa fa-globe"></i> This bin is public </li>
+                        <li><i class="fa fa-globe"></i> {% trans %}This bin is public{% endtrans %}</li>
                     </ul>
 
                     <!-- The "safe" keyword unescapes the HTML rendered by pygments -->
@@ -95,7 +95,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-            No public pastes.
+            {% trans %}No public pastes.{% endtrans %}
             {% endif %}
         </div>
     </div>

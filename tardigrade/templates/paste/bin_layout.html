@@ -8,15 +8,15 @@
             <li><i class="fa fa-code"></i> {{ pastebin.lang }}</li>
 
             {% if pastebin.is_public %}
-            <li><i class="fa fa-globe"></i> This bin is public </li>
+            <li><i class="fa fa-globe"></i> {% trans %}This bin is public{% endtrans %}</li>
             {% else %}
-            <li><i class="fa fa-lock"></i> This bin is private </li>
+            <li><i class="fa fa-lock"></i> {% trans %}This bin is private{% endtrans %}</li>
             {% endif %}
         </ul>
 
 
         <div>
-            You can reach this paste-bin via
+            {% trans %}You can reach this paste-bin via{% endtrans %}
             <pre>{{ request.url_root }}paste/bin/{{ pastebin.id }}-{{ pastebin.slug }} </pre>
         </div>
 
