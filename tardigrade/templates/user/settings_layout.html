@@ -17,7 +17,7 @@
                     <a href="{{ url_for('user.change_email') }}">{% trans %}Change E-Mail Address{% endtrans %}</a>
                 </li>
                 <li {% if 'user.change_password' == request.endpoint %}class="active"{% endif %}>
-                    <a href="{{ url_for('user.change_email') }}">{% trans %}Change Password{% endtrans %}</a>
+                    <a href="{{ url_for('user.change_password') }}">{% trans %}Change Password{% endtrans %}</a>
                 </li>
             </ul>
         </div> <!--/.sidebar -->
