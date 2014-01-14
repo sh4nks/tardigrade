@@ -21,7 +21,8 @@ paste = Blueprint("paste", __name__)
 
 @paste.route("/", methods=["POST", "GET"])
 def index():
-    public_pastes = Bin.query.filter_by(is_public=True).all()
+    public_pastes = Bin.query.filter_by(is_public=True).\
+        order_by(Bin.id.desc()).all()
     return render_template("paste/index.html", pastes=public_pastes)
 
 

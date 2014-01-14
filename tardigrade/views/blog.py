@@ -26,7 +26,7 @@ blog = Blueprint("blog", __name__)
 # Now you can access the blueprint via `blog`
 @blog.route("/")
 def index():
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
     return render_template("blog/index.html", posts=posts)
 
 
