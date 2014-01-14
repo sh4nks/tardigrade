@@ -7,15 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tardigrade 0.1-dev\n"
 "Report-Msgid-Bugs-To: sh4nks7@gmail.com\n"
-"POT-Creation-Date: 2014-01-13 23:09+0100\n"
-"PO-Revision-Date: 2014-01-13 23:09+0100\n"
+"POT-Creation-Date: 2014-01-14 18:36+0100\n"
+"PO-Revision-Date: 2014-01-14 18:37+0100\n"
 "Last-Translator: sh4nks <sh4nks7@gmail.com>\n"
 "Language-Team: Tardigrade Team\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
+"Language: de\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: tardigrade/forms/auth.py:23
 msgid "You may only use letters, numbers or dashes"
@@ -259,6 +261,17 @@ msgstr "Einloggen"
 msgid "Reauthenticate"
 msgstr "Login session erneuern"
 
+#: tardigrade/templates/auth/register.html:9
+#: tardigrade/templates/auth/register.html:30
+#: tardigrade/themes/bootstrap2/templates/layout.html:70
+#: tardigrade/themes/tardigrade/templates/layout.html:69
+msgid "Register"
+msgstr "Registrieren"
+
+#: tardigrade/templates/auth/register.html:22
+msgid "Terms of Service"
+msgstr "Akzeptiere die AGBs"
+
 #: tardigrade/templates/blog/comment_form.html:15
 #: tardigrade/templates/blog/post_form.html:13
 #: tardigrade/templates/paste/bin_form.html:14
@@ -438,11 +451,6 @@ msgstr "Neuer Post"
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: tardigrade/themes/bootstrap2/templates/layout.html:70
-#: tardigrade/themes/tardigrade/templates/layout.html:69
-msgid "Register"
-msgstr "Registrieren"
-
 #: tardigrade/views/auth.py:44
 msgid "Wrong username or password"
 msgstr "Falscher Benutzername oder Passwort"
@@ -468,8 +476,8 @@ msgid ""
 "You have entered an username or email that is not linked                 "
 "with your account"
 msgstr ""
-"Du hast einen Benutzername oder eine E-Mail Adresse eingegeben die nicht "
-"mit deinem Account verknüpft sind."
+"Du hast einen Benutzername oder eine E-Mail Adresse eingegeben die nicht mit "
+"deinem Account verknüpft sind."
 
 #: tardigrade/views/auth.py:135
 msgid "Your password token is invalid."
@@ -542,4 +550,3 @@ msgstr "Dein Passwort wurde aktualisiert."
 #: tardigrade/views/user.py:108
 msgid "Your details have been updated!"
 msgstr "Deine Details wurden aktualisiert."
-
