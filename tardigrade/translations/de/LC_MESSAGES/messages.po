@@ -7,17 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tardigrade 0.1-dev\n"
 "Report-Msgid-Bugs-To: sh4nks7@gmail.com\n"
-"POT-Creation-Date: 2014-01-14 18:36+0100\n"
+"POT-Creation-Date: 2014-01-14 21:11+0100\n"
 "PO-Revision-Date: 2014-01-14 18:37+0100\n"
 "Last-Translator: sh4nks <sh4nks7@gmail.com>\n"
 "Language-Team: Tardigrade Team\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
-"Language: de\n"
-"X-Generator: Poedit 1.6.3\n"
 
 #: tardigrade/forms/auth.py:23
 msgid "You may only use letters, numbers or dashes"
@@ -32,7 +30,7 @@ msgid "You must provide an email adress or username"
 msgstr "Es ist eine E-Mail adresse oder ein Benutzername erforderlich"
 
 #: tardigrade/forms/auth.py:30 tardigrade/forms/auth.py:45
-#: tardigrade/forms/auth.py:80 tardigrade/forms/auth.py:96
+#: tardigrade/forms/auth.py:79 tardigrade/forms/auth.py:95
 msgid "Password"
 msgstr "Passwort"
 
@@ -75,7 +73,7 @@ msgstr "Bestätige Passwort"
 msgid "Confirm Password required"
 msgstr "Bestätigung des Passworts ist erforderlich"
 
-#: tardigrade/forms/auth.py:50 tardigrade/forms/auth.py:101
+#: tardigrade/forms/auth.py:50 tardigrade/forms/auth.py:100
 #: tardigrade/forms/user.py:64
 msgid "Passwords do not match"
 msgstr "Die Passwörter stimmen nicht überein"
@@ -92,27 +90,27 @@ msgstr "Akzeptiere die AGBs"
 msgid "Captcha"
 msgstr "Captcha"
 
-#: tardigrade/forms/auth.py:62
+#: tardigrade/forms/auth.py:61
 msgid "This username is already taken"
 msgstr "Dieser Benutzername ist bereits vergeben."
 
-#: tardigrade/forms/auth.py:67
+#: tardigrade/forms/auth.py:66
 msgid "This e-Mail is already taken"
 msgstr "Diese E-Mail Adresse ist schon registriert."
 
-#: tardigrade/forms/auth.py:84 tardigrade/forms/auth.py:92
+#: tardigrade/forms/auth.py:83 tardigrade/forms/auth.py:91
 msgid "Email"
 msgstr "E-Mail"
 
-#: tardigrade/forms/auth.py:85
+#: tardigrade/forms/auth.py:84
 msgid "Email reguired"
 msgstr "E-Mail Adresse erforderlich"
 
-#: tardigrade/forms/auth.py:99
+#: tardigrade/forms/auth.py:98
 msgid "Confirm password"
 msgstr "Passwort bestätigen"
 
-#: tardigrade/forms/auth.py:106
+#: tardigrade/forms/auth.py:105
 msgid "Wrong e-Mail address."
 msgstr "Falsche E-Mail Adresse."
 
@@ -245,15 +243,15 @@ msgstr "Thema"
 #: tardigrade/templates/auth/forgot_password.html:16
 #: tardigrade/templates/auth/reset_password.html:9
 #: tardigrade/templates/auth/reset_password.html:19
-#: tardigrade/themes/bootstrap2/templates/layout.html:71
-#: tardigrade/themes/tardigrade/templates/layout.html:70
+#: tardigrade/themes/bootstrap2/templates/layout.html:76
+#: tardigrade/themes/tardigrade/templates/layout.html:76
 msgid "Reset Password"
 msgstr "Passwort Zurücksetzen"
 
 #: tardigrade/templates/auth/login.html:8
 #: tardigrade/templates/auth/login.html:26
-#: tardigrade/themes/bootstrap2/templates/layout.html:64
-#: tardigrade/themes/tardigrade/templates/layout.html:63
+#: tardigrade/themes/bootstrap2/templates/layout.html:69
+#: tardigrade/themes/tardigrade/templates/layout.html:69
 msgid "Login"
 msgstr "Einloggen"
 
@@ -263,8 +261,8 @@ msgstr "Login session erneuern"
 
 #: tardigrade/templates/auth/register.html:9
 #: tardigrade/templates/auth/register.html:30
-#: tardigrade/themes/bootstrap2/templates/layout.html:70
-#: tardigrade/themes/tardigrade/templates/layout.html:69
+#: tardigrade/themes/bootstrap2/templates/layout.html:75
+#: tardigrade/themes/tardigrade/templates/layout.html:75
 msgid "Register"
 msgstr "Registrieren"
 
@@ -393,8 +391,8 @@ msgstr "Speichern"
 
 #: tardigrade/templates/user/change_other.html:6
 #: tardigrade/templates/user/settings_layout.html:11
-#: tardigrade/themes/bootstrap2/templates/layout.html:56
-#: tardigrade/themes/tardigrade/templates/layout.html:55
+#: tardigrade/themes/bootstrap2/templates/layout.html:51
+#: tardigrade/themes/tardigrade/templates/layout.html:50
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -436,20 +434,20 @@ msgstr "Account Einstellungen"
 msgid "Change E-Mail Address"
 msgstr "E-Mail Adresse ändern"
 
-#: tardigrade/themes/bootstrap2/templates/layout.html:52
-#: tardigrade/themes/tardigrade/templates/layout.html:51
+#: tardigrade/themes/bootstrap2/templates/layout.html:53
+#: tardigrade/themes/tardigrade/templates/layout.html:52
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: tardigrade/themes/bootstrap2/templates/layout.html:59
+#: tardigrade/themes/tardigrade/templates/layout.html:58
 msgid "New Paste"
 msgstr "Neuer Paste"
 
-#: tardigrade/themes/bootstrap2/templates/layout.html:53
-#: tardigrade/themes/tardigrade/templates/layout.html:52
+#: tardigrade/themes/bootstrap2/templates/layout.html:62
+#: tardigrade/themes/tardigrade/templates/layout.html:61
 msgid "New Post"
 msgstr "Neuer Post"
-
-#: tardigrade/themes/bootstrap2/templates/layout.html:58
-#: tardigrade/themes/tardigrade/templates/layout.html:57
-msgid "Logout"
-msgstr "Ausloggen"
 
 #: tardigrade/views/auth.py:44
 msgid "Wrong username or password"
@@ -476,8 +474,8 @@ msgid ""
 "You have entered an username or email that is not linked                 "
 "with your account"
 msgstr ""
-"Du hast einen Benutzername oder eine E-Mail Adresse eingegeben die nicht mit "
-"deinem Account verknüpft sind."
+"Du hast einen Benutzername oder eine E-Mail Adresse eingegeben die nicht "
+"mit deinem Account verknüpft sind."
 
 #: tardigrade/views/auth.py:135
 msgid "Your password token is invalid."
@@ -550,3 +548,4 @@ msgstr "Dein Passwort wurde aktualisiert."
 #: tardigrade/views/user.py:108
 msgid "Your details have been updated!"
 msgstr "Deine Details wurden aktualisiert."
+

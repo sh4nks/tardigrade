@@ -53,8 +53,7 @@ class RegisterForm(Form):
         _("Accept Terms of Service"), default=False, validators=[
         Required(message=_("You have to accept the Terms of Service"))])
 
-    recaptcha = RecaptchaField(_("Captcha"), validators=[
-        Required(message="Captcha required")])
+    recaptcha = RecaptchaField(_("Captcha"))
 
     def validate_username(self, field):
         user = User.query.filter_by(username=field.data).first()
